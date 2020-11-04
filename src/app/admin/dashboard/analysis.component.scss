@@ -1,0 +1,135 @@
+.total {
+  font-size: 30px;
+}
+
+.meta {
+  position: relative;
+}
+
+.action {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.action2 {
+  position: relative;
+  top: 4px;
+  left: 10px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.outside {
+  position: absolute;
+  left: -5000px;
+  width: 100%;
+
+  &.area {
+    width: 300px;
+  }
+}
+
+.salesExtraWrap {
+  display: inline-block;
+
+  a {
+    margin-left: 24px;
+    color: rgba(0, 0, 0, .85);
+
+    &.active {
+      color: #1890ff;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+    }
+  }
+}
+
+.ranking {
+  padding-left: 0;
+
+  li {
+    margin-top: 16px;
+  }
+
+  .rankingItemNumber {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-top: 1.5px;
+    margin-right: 16px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #fafafa;
+    border-radius: 20px;
+
+    &.active {
+      color: #fff;
+      background-color: #314659;
+    }
+  }
+}
+
+.ant-divider-horizontal {
+  margin: 12px 0;
+}
+
+.search {
+  .numberInfoValue {
+    height: 32px;
+    margin-right: 32px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .subTotal {
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+.saleTab {
+  position: relative;
+}
+
+.saleChart {
+  width: calc(100% - 240px);
+
+  .legend {
+    position: absolute;
+    list-style-type: none;
+    top: 35px;
+    right: 50px;
+  }
+
+  li {
+    cursor: pointer;
+  }
+}
+
+.stores-title {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.stores-value {
+  height: 32px;
+  margin-right: 32px;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+:host ::ng-deep {
+
+  .ant-tabs-nav .ant-tabs-tab:active,
+  .ant-tabs-nav .ant-tabs-tab:hover,
+  .ant-tabs-nav .ant-tabs-tab-active {
+    color: inherit;
+  }
+}

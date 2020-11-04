@@ -1,1 +1,120 @@
 /* You can add global styles to this file, and also import other style files */
+.content-section {
+  margin: 24px;
+}
+
+// 动态圆圈
+.orna-circle {
+  position: absolute;
+  top: 50%;
+  background-color: #7d6ee7;
+  opacity: .078;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+  -webkit-animation: circle_animation 7s linear infinite;
+  animation: circle_animation 7s linear infinite;
+}
+
+@-webkit-keyframes circle_animation {
+
+  0%,
+  to {
+    border-radius: 42% 58% 70% 30%/45% 45% 55% 55%;
+    -webkit-transform: translateZ(0) rotate(.01deg);
+    transform: translateZ(0) rotate(.01deg)
+  }
+
+  34% {
+    border-radius: 70% 30% 46% 54%/30% 29% 71% 70%;
+    -webkit-transform: translate3d(0, 5px, 0) rotate(.01deg);
+    transform: translate3d(0, 5px, 0) rotate(.01deg)
+  }
+
+  50% {
+    -webkit-transform: translateZ(0) rotate(.01deg);
+    transform: translateZ(0) rotate(.01deg)
+  }
+
+  67% {
+    border-radius: 100% 60% 60% 100%/100% 100% 60% 60%;
+    -webkit-transform: translate3d(0, -3px, 0) rotate(.01deg);
+    transform: translate3d(0, -3px, 0) rotate(.01deg)
+  }
+}
+
+@keyframes circle_animation {
+
+  0%,
+  to {
+    border-radius: 42% 58% 70% 30%/45% 45% 55% 55%;
+    -webkit-transform: translateZ(0) rotate(.01deg);
+    transform: translateZ(0) rotate(.01deg)
+  }
+
+  34% {
+    border-radius: 70% 30% 46% 54%/30% 29% 71% 70%;
+    -webkit-transform: translate3d(0, 5px, 0) rotate(.01deg);
+    transform: translate3d(0, 5px, 0) rotate(.01deg)
+  }
+
+  50% {
+    -webkit-transform: translateZ(0) rotate(.01deg);
+    transform: translateZ(0) rotate(.01deg)
+  }
+
+  67% {
+    border-radius: 100% 60% 60% 100%/100% 100% 60% 60%;
+    -webkit-transform: translate3d(0, -3px, 0) rotate(.01deg);
+    transform: translate3d(0, -3px, 0) rotate(.01deg)
+  }
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+
+.pl10 {
+  padding-left: 10px;
+}
+
+.pr10 {
+  padding-right: 10px;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.h100 {
+  height: 100%;
+}

@@ -1,0 +1,64 @@
+<nz-layout class="layout">
+  <nz-sider>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item>
+        <a [routerLink]="'/home'">
+          <i nz-icon nzType="home" nzTheme="outline"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+            <a [routerLink]="'/dashboard/analysis'">
+              <span>分析页</span>
+            </a>
+          </li>
+          <li nz-menu-item>监控页</li>
+          <li nz-menu-item>工作台</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="file"></i>
+        <span>nav 1</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="video-camera"></i>
+        <span>nav 2</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="upload"></i>
+        <span>nav 3</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="bar-chart"></i>
+        <span>nav 4</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="cloud-o"></i>
+        <span>nav 5</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="appstore-o"></i>
+        <span>nav 6</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="team"></i>
+        <span>nav 7</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="shop"></i>
+        <span>nav 8</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header></nz-header>
+    <nz-content>
+      <div class="orna-circle" style="left: 40%;"></div>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>sky-admin ©2020 Implement By llkui</nz-footer>
+  </nz-layout>
+</nz-layout>
