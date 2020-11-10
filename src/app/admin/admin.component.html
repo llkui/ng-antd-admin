@@ -19,6 +19,17 @@
           <li nz-menu-item>工作台</li>
         </ul>
       </li>
+      <li nz-submenu nzTitle="表单页" nzIcon="form">
+        <ul>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+            <a [routerLink]="'/form/basic-form'">
+              <span>基本表单</span>
+            </a>
+          </li>
+          <li nz-menu-item>分步表单</li>
+          <li nz-menu-item>高级表单</li>
+        </ul>
+      </li>
       <li nz-menu-item>
         <i nz-icon nzType="file"></i>
         <span>nav 1</span>

@@ -1,0 +1,98 @@
+<nz-page-header class="site-page-header" nzTitle="基础表单" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>表单页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>基础表单</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。
+  </nz-page-header-content>
+</nz-page-header>
+<div class="content-section">
+  <nz-card>
+    <form nz-form [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="title">标题</nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzErrorTip]="'请输入标题'">
+          <input nz-input formControlName="title" id="title" placeholder="给项目起个名字">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="date">起止日期</nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzErrorTip]="'请选择起止日期'">
+          <nz-range-picker formControlName="date" class="w100"></nz-range-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="describe">目标描述</nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzErrorTip]="'请输入目标描述'">
+          <textarea nz-input rows="4" formControlName="describe" id="describe" placeholder="请输入你的阶段性工作目标"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="standard">衡量标准</nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzErrorTip]="'请输入衡量标准'">
+          <textarea nz-input rows="4" formControlName="standard" id="standard" placeholder="请输入衡量标准"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="customer">
+          客户
+          <span class="optional">
+            （选填）
+            <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+          </span>
+        </nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10">
+          <input nz-input formControlName="customer" id="customer" placeholder="请描述你服务的客户，内部客户直接 @姓名／工号">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="invite">
+          邀评人
+          <span class="optional">
+            （选填）
+          </span></nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10">
+          <input nz-input formControlName="invite" id="invite" placeholder="请直接 @姓名／工号，最多可邀请 5 人">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="proportion">
+          权重
+          <span class="optional">
+            （选填）
+          </span>
+        </nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10">
+          <nz-input-number formControlName="proportion" id="proportion" [nzPlaceHolder]="'请输入'"></nz-input-number>
+          <nz-form-text>%</nz-form-text>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="24" [nzSm]="7" nzFor="c">目标公开</nz-form-label>
+        <nz-form-control [nzXs]="24" [nzSm]="12" [nzMd]="10" nzExtra="客户、邀评人默认被分享">
+          <nz-radio-group formControlName="target_status" id="target_status">
+            <label nz-radio nzValue="public">公开</label>
+            <label nz-radio nzValue="part_public">部分公开</label>
+            <label nz-radio nzValue="private">不公开</label>
+          </nz-radio-group>
+          <nz-select *ngIf="validateForm.controls.target_status.value == 'part_public'" formControlName="target_people"
+            nzMode="tags" nzPlaceHolder="公开给" class="mt10 mb10">
+            <nz-option *ngFor="let option of peopleList" [nzLabel]="option.name" [nzValue]="option.id">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row>
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzOffset]="7">
+          <button (click)="submitForm()" nz-button [nzType]="'primary'" [nzLoading]="isSpinning"
+            class="mr10">提交</button>
+          <button nz-button>保存</button>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+</div>
