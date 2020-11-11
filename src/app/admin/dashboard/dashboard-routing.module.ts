@@ -6,7 +6,8 @@ import { DashboardAnalysisComponent } from './analysis.component';
 const dashboardRoutes: Routes = [
     {
         path: 'analysis',
-        component: DashboardAnalysisComponent
+        component: DashboardAnalysisComponent,
+        data: { title: '分析页' }
     }
 ];
 

@@ -1,0 +1,40 @@
+:host ::ng-deep {
+  .site-page-header {
+    background-color: #ffffff;
+  }
+
+  .ant-steps {
+    max-width: 750px;
+    margin: 16px auto;
+  }
+
+  .ant-form {
+    max-width: 500px;
+    margin: 40px auto 0;
+  }
+
+  .desc {
+    padding: 0 56px;
+    color: rgba(0, 0, 0, .45);
+  }
+
+  .descriptions {
+    color: rgba(0, 0, 0, .85);
+    line-height: 32px;
+  }
+
+  .int {
+    font-size: 24px;
+  }
+
+  .result-success {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 0 8px;
+  }
+
+  .result-content {
+    padding: 24px 40px;
+    background-color: #fafafa;
+  }
+}

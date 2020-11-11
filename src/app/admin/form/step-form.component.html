@@ -1,0 +1,141 @@
+<nz-page-header class="site-page-header" nzTitle="分步表单" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>表单页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>分步表单</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。
+  </nz-page-header-content>
+</nz-page-header>
+<div class="content-section">
+  <nz-card>
+    <nz-steps [nzCurrent]="currentIndex">
+      <nz-step nzTitle="填写转账信息"></nz-step>
+      <nz-step nzTitle="确认转账信息"> </nz-step>
+      <nz-step nzTitle="完成"></nz-step>
+    </nz-steps>
+    <ng-container *ngIf="currentIndex == 0">
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="payment_account">付款账户</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzErrorTip]="'请选择付款账户'">
+            <nz-select formControlName="payment_account" nzPlaceHolder="请选择付款账户">
+              <nz-option [nzLabel]="'sky-admin@llkui.com'" [nzValue]="'sky-admin'">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="collection_type">收款账户</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzValidateStatus]="validateForm.controls['collection_account']"
+            [nzErrorTip]="collectionAccount">
+            <nz-input-group nzCompact>
+              <nz-select formControlName="collection_type" style="width: 100px;">
+                <nz-option [nzLabel]="'支付宝'" [nzValue]="'alipay'"></nz-option>
+                <nz-option [nzLabel]="'银行账户'" [nzValue]="'bank'"></nz-option>
+              </nz-select>
+              <input type="email" nz-input formControlName="collection_account" placeholder="test@example.com"
+                style="width: calc(100% - 100px);" />
+            </nz-input-group>
+            <ng-template #collectionAccount let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                请输入收款账户
+              </ng-container>
+              <ng-container *ngIf="control.hasError('email')">
+                账户名应为邮箱格式
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="collection_name">收款人姓名</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzErrorTip]="'请输入收款人姓名'">
+            <input nz-input formControlName="collection_name" id="collection_name" placeholder="请输入收款人姓名">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="account">转账金额</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzErrorTip]="accountTpl">
+            <nz-input-group nzPrefix="￥">
+              <input nz-input formControlName="account" id="account" placeholder="请输入金额">
+            </nz-input-group>
+            <ng-template #accountTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                请输入转账金额
+              </ng-container>
+              <ng-container *ngIf="control.hasError('matchNumber')">
+                请输入合法金额数字
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row>
+          <div nz-col [nzSpan]="19" [nzOffset]="5">
+            <button (click)="nextStep()" nz-button [nzType]="'primary'" [nzLoading]="isSpinning">下一步</button>
+          </div>
+        </div>
+      </form>
+      <nz-divider></nz-divider>
+      <div class="desc">
+        <h3>说明</h3>
+        <h4>转账到支付宝账户</h4>
+        <p>如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。</p>
+        <h4>转账到银行卡</h4>
+        <p>如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="currentIndex == 1">
+      <form nz-form [formGroup]="validateForm2">
+        <nz-alert [nzType]="'info'" [nzMessage]="'确认转账后，资金将直接打入对方账户，无法退回。'" nzShowIcon nzCloseable class="mb20">
+        </nz-alert>
+        <div class="descriptions">
+          <div class="mb10">付款账户：{{validateForm.controls.payment_account.value}}</div>
+          <div class="mb10">收款账户：{{validateForm.controls.collection_account.value}}</div>
+          <div class="mb10">收款人姓名：{{validateForm.controls.collection_name.value}}</div>
+          <div class="mb10 flex">
+            <div>转账金额：</div>
+            <div class="int">{{validateForm.controls.account.value | number}}</div>
+            <div class="ml5">元</div>
+          </div>
+        </div>
+        <nz-divider></nz-divider>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="password">支付密码</nz-form-label>
+          <nz-form-control [nzSpan]="19" [nzErrorTip]="'需要支付密码才能进行支付'">
+            <input nz-input type="password" formControlName="password" id="password">
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row>
+          <div nz-col [nzSpan]="19" [nzOffset]="5">
+            <button (click)="submitForm()" nz-button [nzType]="'primary'" [nzLoading]="isSpinning"
+              class="mr10">提交</button>
+            <button (click)="backStep()" nz-button>上一步</button>
+          </div>
+        </div>
+      </form>
+    </ng-container>
+    <ng-container *ngIf="currentIndex == 2">
+      <div class="result-success">
+        <nz-result nzStatus="success" nzTitle="操作成功" nzSubTitle="预计两小时内到账">
+          <div nz-result-extra>
+            <button (click)="again()" nz-button nzType="primary">再转一笔</button>
+            <button nz-button>查看账单</button>
+          </div>
+        </nz-result>
+        <div class="result-content descriptions">
+          <div class="mb10">付款账户：{{validateForm.controls.payment_account.value}}</div>
+          <div class="mb10">收款账户：{{validateForm.controls.collection_account.value}}</div>
+          <div class="mb10">收款人姓名：{{validateForm.controls.collection_name.value}}</div>
+          <div class="mb10 flex">
+            <div>转账金额：</div>
+            <div class="int">{{validateForm.controls.account.value | number}}</div>
+            <div class="ml5">元</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </nz-card>
+</div>

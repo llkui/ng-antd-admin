@@ -26,7 +26,11 @@
               <span>基本表单</span>
             </a>
           </li>
-          <li nz-menu-item>分步表单</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+            <a [routerLink]="'/form/step-form'">
+              <span>分步表单</span>
+            </a>
+          </li>
           <li nz-menu-item>高级表单</li>
         </ul>
       </li>
@@ -61,6 +65,12 @@
       <li nz-menu-item>
         <i nz-icon nzType="shop"></i>
         <span>nav 8</span>
+      </li>
+      <li nz-menu-item>
+        <a [routerLink]="'/changelog'">
+          <i nz-icon nzType="tag" nzTheme="outline"></i>
+          <span>更新日志</span>
+        </a>
       </li>
     </ul>
   </nz-sider>

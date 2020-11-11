@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BasicFormComponent } from './basic-form.component';
+import { StepFormComponent } from './step-form.component';
 
 const route: Routes = [
     {
         path: 'basic-form',
-        component: BasicFormComponent
+        component: BasicFormComponent,
+        data: { title: '基础表单' }
+    },
+    {
+        path: 'step-form',
+        component: StepFormComponent,
+        data: { title: '分步表单' }
     }
 ];
 

@@ -14,17 +14,24 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 import { FormRoutingModule } from './form-routing.module';
 
 import { BasicFormComponent } from './basic-form.component';
+import { StepFormComponent } from './step-form.component';
 
 @NgModule({
     declarations: [
-        BasicFormComponent
+        BasicFormComponent,
+        StepFormComponent
     ],
     exports: [
-        BasicFormComponent
+        BasicFormComponent,
+        StepFormComponent
     ],
     imports: [
         CommonModule,
@@ -42,6 +49,10 @@ import { BasicFormComponent } from './basic-form.component';
         NzButtonModule,
         NzMessageModule,
         NzIconModule,
+        NzStepsModule,
+        NzDividerModule,
+        NzAlertModule,
+        NzResultModule,
         FormRoutingModule
     ]
 })
