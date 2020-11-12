@@ -18,20 +18,29 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 import { FormRoutingModule } from './form-routing.module';
 
 import { BasicFormComponent } from './basic-form.component';
 import { StepFormComponent } from './step-form.component';
+import { AdvancedFormComponent } from './advanced-form.component';
 
 @NgModule({
     declarations: [
         BasicFormComponent,
-        StepFormComponent
+        StepFormComponent,
+        AdvancedFormComponent
     ],
     exports: [
         BasicFormComponent,
-        StepFormComponent
+        StepFormComponent,
+        AdvancedFormComponent
     ],
     imports: [
         CommonModule,
@@ -53,6 +62,12 @@ import { StepFormComponent } from './step-form.component';
         NzDividerModule,
         NzAlertModule,
         NzResultModule,
+        NzTimePickerModule,
+        NzTableModule,
+        NzPopconfirmModule,
+        NzAffixModule,
+        NzPopoverModule,
+        NzListModule,
         FormRoutingModule
     ]
 })

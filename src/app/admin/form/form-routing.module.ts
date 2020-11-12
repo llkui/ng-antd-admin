@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { BasicFormComponent } from './basic-form.component';
 import { StepFormComponent } from './step-form.component';
+import { AdvancedFormComponent } from './advanced-form.component';
 
 const route: Routes = [
     {
@@ -14,6 +15,11 @@ const route: Routes = [
         path: 'step-form',
         component: StepFormComponent,
         data: { title: '分步表单' }
+    },
+    {
+        path: 'advanced-form',
+        component: AdvancedFormComponent,
+        data: { title: '高级表单' }
     }
 ];
 

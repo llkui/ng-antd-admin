@@ -130,3 +130,33 @@
 .w100 {
   width: 100%;
 }
+
+.form-advanced-form-style-errorPopover {
+  .ant-popover-inner-content {
+    min-width: 256px;
+    max-height: 290px;
+    padding: 0;
+    overflow: auto;
+  }
+
+  .ant-list-item {
+    padding: 8px 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e6f7ff;
+    }
+  }
+
+  .errorIcon {
+    margin-top: 4px;
+    margin-right: 12px;
+    color: #ff4d4f;
+  }
+
+  .errorField {
+    margin-top: 2px;
+    color: rgba(0, 0, 0, .45);
+    font-size: 12px;
+  }
+}

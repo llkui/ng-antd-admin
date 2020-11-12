@@ -1,0 +1,206 @@
+<nz-page-header class="site-page-header" nzTitle="高级表单" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>表单页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>高级表单</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    高级表单常见于一次性输入和提交大批量数据的场景。
+  </nz-page-header-content>
+</nz-page-header>
+<div class="content-section">
+  <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+    <nz-card [nzTitle]="'仓库管理'" [nzBordered]="false">
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="6">
+          <nz-form-item class="warehouse_name_item">
+            <nz-form-label nzFor="warehouse_name">仓库名</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入仓库名'">
+              <input nz-input formControlName="warehouse_name" id="warehouse_name" placeholder="请输入仓库名">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="6" [nzOffset]="2">
+          <nz-form-item class="warehouse_domain_item">
+            <nz-form-label nzFor="warehouse_domain">仓库域名</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入'">
+              <nz-input-group nzAddOnBefore="Http://" nzAddOnAfter=".com">
+                <input nz-input formControlName="warehouse_domain" id="warehouse_domain" placeholder="请输入">
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="24" [nzLg]="10" [nzXl]="8" [nzOffset]="2">
+          <nz-form-item class="warehouse_admin_item">
+            <nz-form-label nzFor="warehouse_admin">仓库管理员</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择仓库管理员'">
+              <nz-select formControlName="warehouse_admin" [nzPlaceHolder]="'请选择仓库管理员'">
+                <nz-option [nzLabel]="'付晓晓'" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'周毛毛'" [nzValue]="'2'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="6">
+          <nz-form-item class="warehouse_approval_item">
+            <nz-form-label nzFor="warehouse_approval">审批人</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择审批员'">
+              <nz-select formControlName="warehouse_approval" [nzPlaceHolder]="'请选择审批员'">
+                <nz-option [nzLabel]="'付晓晓'" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'周毛毛'" [nzValue]="'2'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="6" [nzOffset]="2">
+          <nz-form-item class="warehouse_start_date_item">
+            <nz-form-label nzFor="warehouse_start_date">生效日期</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择生效日期'">
+              <nz-range-picker formControlName="warehouse_start_date" class="w100"></nz-range-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="24" [nzLg]="10" [nzXl]="8" [nzOffset]="2">
+          <nz-form-item class="warehouse_type_item">
+            <nz-form-label nzFor="warehouse_type">仓库类型</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择仓库类型'">
+              <nz-select formControlName="warehouse_type" [nzPlaceHolder]="'请选择仓库类型'">
+                <nz-option [nzLabel]="'私密'" [nzValue]="'private'"></nz-option>
+                <nz-option [nzLabel]="'公开'" [nzValue]="'public'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-card>
+    <nz-card [nzTitle]="'任务管理'" [nzBordered]="false">
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="6">
+          <nz-form-item class="task_name_item">
+            <nz-form-label nzFor="task_name">任务名</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入'">
+              <input nz-input formControlName="task_name" id="task_name" placeholder="请输入">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="6" [nzOffset]="2">
+          <nz-form-item class="task_desc_item">
+            <nz-form-label nzFor="task_desc">任务描述</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入'">
+              <input nz-input formControlName="task_desc" id="task_desc" placeholder="请输入">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="24" [nzLg]="10" [nzXl]="8" [nzOffset]="2">
+          <nz-form-item class="task_admin_item">
+            <nz-form-label nzFor="task_admin">执行人</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择管理员'">
+              <nz-select formControlName="task_admin" [nzPlaceHolder]="'请选择管理员'">
+                <nz-option [nzLabel]="'付晓晓'" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'周毛毛'" [nzValue]="'2'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="6">
+          <nz-form-item class="task_approval_item">
+            <nz-form-label nzFor="task_approval">责任人</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择审批员'">
+              <nz-select formControlName="task_approval" [nzPlaceHolder]="'请选择审批员'">
+                <nz-option [nzLabel]="'付晓晓'" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'周毛毛'" [nzValue]="'2'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="6" [nzOffset]="2">
+          <nz-form-item class="task_start_date_item">
+            <nz-form-label nzFor="task_start_date">生效日期</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择生效日期'">
+              <nz-time-picker formControlName="task_start_date" [nzPlaceHolder]="'提醒时间'" class="w100"></nz-time-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSm]="24" [nzMd]="24" [nzLg]="10" [nzXl]="8" [nzOffset]="2">
+          <nz-form-item class="task_type_item">
+            <nz-form-label nzFor="task_type">任务类型</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择任务类型'">
+              <nz-select formControlName="task_type" [nzPlaceHolder]="'请选择任务类型'">
+                <nz-option [nzLabel]="'私密'" [nzValue]="'private'"></nz-option>
+                <nz-option [nzLabel]="'公开'" [nzValue]="'public'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-card>
+  </form>
+  <nz-card [nzTitle]="'成员管理'" [nzBordered]="false">
+    <nz-table #editRowTable [nzData]="listOfData" [nzShowPagination]="false" [nzLoading]="isSpinning">
+      <thead>
+        <tr>
+          <th nzWidth="25%">成员姓名</th>
+          <th nzWidth="15%">工号</th>
+          <th nzWidth="40%">所属部门</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of editRowTable.data">
+          <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+            <td>{{ data.name }}</td>
+            <td>{{ data.job_number }}</td>
+            <td>{{ data.department }}</td>
+            <td>
+              <a (click)="startEdit(data.id)">编辑</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzPopconfirmTitle="是否要删除此行？" (nzOnConfirm)="deleteItem(data.id)">删除</a>
+            </td>
+          </ng-container>
+          <ng-template #editTemplate>
+            <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.name" /></td>
+            <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.job_number" /></td>
+            <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.department" /></td>
+            <td>
+              <a (click)="saveEdit(data.id)" class="save">保存</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="cancelEdit(data.id)">取消</a>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </nz-table>
+    <button (click)="addItem()" nz-button [nzType]="'dashed'" nzBlock class="mt20">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>
+      <span>新增成员</span>
+    </button>
+  </nz-card>
+</div>
+<nz-affix [nzOffsetBottom]="0">
+  <div class="footer-bar flex">
+    <div class="flex-1"></div>
+    <div *ngIf="errorData.length > 0" class="errorIcon mr10" nz-popover nzPopoverTitle="表单校验信息"
+      [nzPopoverContent]="contentTpl" [nzPopoverOverlayClassName]="'form-advanced-form-style-errorPopover'"
+      nzPopoverTrigger="click" nzPopoverPlacement="topRight">
+      <i nz-icon nzType="close-circle" nzTheme="outline"></i>{{errorData.length}}
+    </div>
+    <ng-template #contentTpl>
+      <nz-list>
+        <nz-list-item *ngFor="let item of errorData" (click)="goErrorItem(item)">
+          <div class="flex">
+            <i nz-icon nzType="close-circle" nzTheme="outline" class="errorIcon"></i>
+            <div>
+              <div>{{item.placeholder}}</div>
+              <div class="errorField">{{item.name}}</div>
+            </div>
+          </div>
+        </nz-list-item>
+      </nz-list>
+    </ng-template>
+    <div>
+      <button (click)="save()" nz-button [nzType]="'primary'">提交</button>
+    </div>
+  </div>
+</nz-affix>
