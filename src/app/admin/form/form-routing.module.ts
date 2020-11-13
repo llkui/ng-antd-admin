@@ -5,7 +5,7 @@ import { BasicFormComponent } from './basic-form.component';
 import { StepFormComponent } from './step-form.component';
 import { AdvancedFormComponent } from './advanced-form.component';
 
-const route: Routes = [
+const routes: Routes = [
     {
         path: 'basic-form',
         component: BasicFormComponent,
@@ -24,7 +24,7 @@ const route: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(route)],
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
 

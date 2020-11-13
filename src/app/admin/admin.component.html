@@ -38,6 +38,32 @@
           </li>
         </ul>
       </li>
+      <li nz-submenu nzTitle="列表页" nzIcon="table">
+        <ul>
+          <li nz-submenu nzTitle="搜索列表">
+            <ul>
+              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                <a [routerLink]="'/list/search/articles'">
+                  <span>搜索列表（文章）</span>
+                </a>
+              </li>
+              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                <a [routerLink]="'/list/search/projects'">
+                  <span>搜索列表（项目）</span>
+                </a>
+              </li>
+              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                <a [routerLink]="'/list/search/applications'">
+                  <span>搜索列表（应用）</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li nz-menu-item>查询表格</li>
+          <li nz-menu-item>标准列表</li>
+          <li nz-menu-item>卡片列表</li>
+        </ul>
+      </li>
       <li nz-menu-item>
         <i nz-icon nzType="file"></i>
         <span>nav 1</span>

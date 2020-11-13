@@ -1,0 +1,36 @@
+<nz-page-header class="site-page-header" nzTitle="搜索列表（文章）" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>列表页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>搜索列表</nz-breadcrumb-item>
+    <nz-breadcrumb-item>搜索列表（文章）</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    <div class="text-center">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" style="max-width: 522px;">
+        <input type="text" nz-input placeholder="请输入" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>搜索</button>
+      </ng-template>
+    </div>
+  </nz-page-header-content>
+  <nz-page-header-footer>
+    <nz-tabset nzLinkRouter>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['articles']">文章</a>
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['projects']">项目</a>
+      </nz-tab>
+      <nz-tab>
+        <a nz-tab-link [routerLink]="['applications']">应用</a>
+      </nz-tab>
+    </nz-tabset>
+  </nz-page-header-footer>
+</nz-page-header>
+<div class="content-section">
+  <router-outlet></router-outlet>
+</div>

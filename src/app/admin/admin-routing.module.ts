@@ -34,6 +34,10 @@ const adminRoutes: Routes = [
             {
                 path: 'form',
                 loadChildren: () => import('./form/form.module').then(m => m.FromModule)
+            },
+            {
+                path: 'list',
+                loadChildren: () => import('./list/list.module').then(m => m.ListModule)
             }
         ]
     }
