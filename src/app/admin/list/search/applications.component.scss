@@ -45,43 +45,34 @@
 
   .ant-select.max-width {
     max-width: 200px;
-    width: auto;
+    width: 100%;
   }
 
   .select-trigger {
     line-height: 32px;
   }
 
-  .ant-card-meta-description {
-    height: 44px;
-    overflow: hidden;
-    line-height: 22px;
+  .user-title {
+    font-size: 12px;
+  }
+
+  .user-number {
     color: rgba(0, 0, 0, .85);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 24px;
+    line-height: 32px;
   }
 
-  .cardItemContent {
-    margin-top: 16px;
-
-    &>span {
-      flex: 1 1;
-      color: rgba(0, 0, 0, .45);
-      font-size: 12px;
-    }
+  .user-unit {
+    color: rgba(0, 0, 0, .85);
+    margin-left: 2px;
   }
 
-  .cardItemMember {
-    .ant-avatar {
-      width: 24px;
-      height: 24px;
-      margin-left: -8px;
-    }
+  .ant-card-actions {
+    background: #ffffff;
   }
 
-  .ant-card:hover .ant-card-meta-title {
-    color: #1890ff;
+  .ant-avatar {
+    width: 24px;
+    height: 24px;
   }
 }

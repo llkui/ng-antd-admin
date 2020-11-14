@@ -1,0 +1,97 @@
+<nz-card>
+  <div class="standard flex">
+    <div class="standard-label">所属类目：</div>
+    <div class="standard-content hasExpanded flex-1" [class.expanded]="expanded">
+      <nz-tag nzMode="checkable" [(nzChecked)]="typeAll" (nzCheckedChange)="typeChangeAll($event)">
+        <span>全部</span>
+      </nz-tag>
+      <ng-container *ngFor="let type of typeList">
+        <nz-tag nzMode="checkable" [(nzChecked)]="type.checked" (nzCheckedChange)="typeChange()">
+          <span>{{type.name}}</span>
+        </nz-tag>
+      </ng-container>
+    </div>
+    <a *ngIf="!expanded" (click)="expanded = true" class="select-trigger">展开<i nz-icon nzType="down"
+        nzTheme="outline"></i></a>
+    <a *ngIf="expanded" (click)="expanded = false" class="select-trigger">收起<i nz-icon nzType="up"
+        nzTheme="outline"></i></a>
+  </div>
+  <div class="standard flex">
+    <div class="standard-label">owner：</div>
+    <div class="standard-content flex-1">
+      <nz-select [(ngModel)]="searchInfo.owner" nzMode="multiple" [nzPlaceHolder]="'不限'">
+        <nz-option nzValue="1" nzLabel="我自己"></nz-option>
+        <nz-option nzValue="2" nzLabel="吴家豪"></nz-option>
+        <nz-option nzValue="3" nzLabel="周星星"></nz-option>
+        <nz-option nzValue="4" nzLabel="赵丽颖"></nz-option>
+        <nz-option nzValue="5" nzLabel="姚明"></nz-option>
+      </nz-select>
+      <a>只看自己的</a>
+    </div>
+  </div>
+  <div class="standard flex">
+    <div class="standard-label">其它选项：</div>
+    <div class="standard-content flex-1">
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzXs]="24" [nzSm]="10" [nzLg]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="author">活跃用户</nz-form-label>
+            <nz-form-control>
+              <nz-select [(ngModel)]="searchInfo.author" [nzPlaceHolder]="'不限'" class="max-width">
+                <nz-option nzValue="1" nzLabel="李三"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="10" [nzLg]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="author">好评度</nz-form-label>
+            <nz-form-control>
+              <nz-select [(ngModel)]="searchInfo.like" [nzPlaceHolder]="'不限'" class="max-width">
+                <nz-option nzValue="1" nzLabel="优秀"></nz-option>
+                <nz-option nzValue="2" nzLabel="普通"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="mt20">
+  <nz-list nzItemLayout="vertical">
+    <nz-list-item *ngFor="let item of articleList">
+      <nz-list-item-meta>
+        <nz-list-item-meta-title>
+          <a>{{item.title}}</a>
+        </nz-list-item-meta-title>
+        <nz-list-item-meta-description>
+          <nz-tag *ngFor="let tag of item.tagList">{{tag.name}}</nz-tag>
+        </nz-list-item-meta-description>
+      </nz-list-item-meta>
+      <div class="article-content">
+        <div class="content mb10">{{item.content}}</div>
+        <div class="flex article-tip">
+          <nz-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+          <a class="article-author">{{item.author}}</a>
+          <span>发布在</span>
+          <a class="article-url">{{item.href}}</a>
+          <span class="article-time">{{item.time}}</span>
+        </div>
+      </div>
+      <ul nz-list-item-actions>
+        <nz-list-item-action><i nz-icon nzType="star-o" style="margin-right: 8px;"></i> {{item.start}}
+        </nz-list-item-action>
+        <nz-list-item-action><i nz-icon nzType="like" style="margin-right: 8px;"></i> {{item.like}}
+        </nz-list-item-action>
+        <nz-list-item-action><i nz-icon nzType="message" style="margin-right: 8px;"></i> {{item.message}}
+        </nz-list-item-action>
+      </ul>
+      <nz-list-item-extra>
+      </nz-list-item-extra>
+    </nz-list-item>
+    <div class="loadmore" nz-list-load-more>
+      <button nz-button [nzLoading]="loadingMore" (click)="onLoadMore()">{{loadingMore ? '加载中...' : '加载更多'}}</button>
+    </div>
+  </nz-list>
+</nz-card>

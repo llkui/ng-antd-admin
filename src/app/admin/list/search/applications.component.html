@@ -1,0 +1,96 @@
+<nz-card>
+  <div class="standard flex">
+    <div class="standard-label">所属类目：</div>
+    <div class="standard-content hasExpanded flex-1" [class.expanded]="expanded">
+      <nz-tag nzMode="checkable" [(nzChecked)]="typeAll" (nzCheckedChange)="typeChangeAll($event)">
+        <span>全部</span>
+      </nz-tag>
+      <ng-container *ngFor="let type of typeList">
+        <nz-tag nzMode="checkable" [(nzChecked)]="type.checked" (nzCheckedChange)="typeChange()">
+          <span>{{type.name}}</span>
+        </nz-tag>
+      </ng-container>
+    </div>
+    <a *ngIf="!expanded" (click)="expanded = true" class="select-trigger">展开<i nz-icon nzType="down"
+        nzTheme="outline"></i></a>
+    <a *ngIf="expanded" (click)="expanded = false" class="select-trigger">收起<i nz-icon nzType="up"
+        nzTheme="outline"></i></a>
+  </div>
+  <div class="standard flex">
+    <div class="standard-label">其它选项：</div>
+    <div class="standard-content flex-1">
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzXs]="24" [nzSm]="10" [nzLg]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="author">作者</nz-form-label>
+            <nz-form-control [nzXs]="24" [nzSm]="16">
+              <nz-select [(ngModel)]="searchInfo.author" [nzPlaceHolder]="'不限'" class="max-width">
+                <nz-option nzValue="1" nzLabel="王昭君"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="10" [nzLg]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="author">好评度</nz-form-label>
+            <nz-form-control [nzXs]="24" [nzSm]="16">
+              <nz-select [(ngModel)]="searchInfo.like" [nzPlaceHolder]="'不限'" class="max-width">
+                <nz-option nzValue="1" nzLabel="优秀"></nz-option>
+                <nz-option nzValue="2" nzLabel="普通"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-card>
+<div class="mt20">
+  <div nz-row [nzGutter]="18">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let application of applicationList">
+      <nz-card nzHoverable [nzActions]="[actionDownload, actionEdit, actionShareAlt, actionEllipsis]" class="mb20">
+        <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="application.title" [nzDescription]="descTpl">
+        </nz-card-meta>
+      </nz-card>
+      <ng-template #descTpl>
+        <div nz-row>
+          <div nz-col [nzSpan]="12">
+            <p class="user-title">活跃用户</p>
+            <div>
+              <span class="user-number">{{application.activeUser}}</span>
+              <span class="user-unit">万</span>
+            </div>
+          </div>
+          <div nz-col [nzSpan]="12">
+            <p class="user-title">新增用户</p>
+            <div>
+              <span class="user-number">{{application.newUser | number}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #avatarTemplate>
+        <nz-avatar [nzSrc]="application.cover"></nz-avatar>
+      </ng-template>
+      <ng-template #actionDownload>
+        <i nz-tooltip nzTooltipTitle="下载" nz-icon nzType="download"></i>
+      </ng-template>
+      <ng-template #actionEdit>
+        <i nz-tooltip nzTooltipTitle="编辑" nz-icon nzType="edit"></i>
+      </ng-template>
+      <ng-template #actionShareAlt>
+        <i nz-tooltip nzTooltipTitle="分享" nz-icon nzType="share-alt"></i>
+      </ng-template>
+      <ng-template #actionEllipsis>
+        <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="ellipsis"></i>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>1st menu item</li>
+            <li nz-menu-item>2nd menu item</li>
+            <li nz-menu-item>3d menu item</li>
+          </ul>
+        </nz-dropdown-menu>
+      </ng-template>
+    </div>
+  </div>
+</div>

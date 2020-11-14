@@ -15,6 +15,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { SearchRoutingModule } from './search-routing.module';
 
@@ -52,6 +54,8 @@ import { SearchApplicationsComponent } from './applications.component';
         NzIconModule,
         NzAvatarModule,
         NzToolTipModule,
+        NzListModule,
+        NzDropDownModule,
         SearchRoutingModule
     ]
 })

@@ -1,1 +1,101 @@
+:host ::ng-deep {
 
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+
+  .standard {
+    margin-bottom: 16px;
+    padding-bottom: 11px;
+    border-bottom: 1px dashed #f0f0f0;
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    a {
+      line-height: 32px;
+      margin-left: 12px;
+    }
+
+    .ant-tag {
+      font-size: 14px;
+      cursor: pointer;
+      margin-right: 24px;
+    }
+  }
+
+  .standard-label {
+    flex: 0 0 auto;
+    margin-right: 24px;
+    color: rgba(0, 0, 0, .85);
+    text-align: right;
+    line-height: 32px;
+  }
+
+  .standard-content {
+    line-height: 32px;
+    transition: all .3s;
+    overflow: hidden;
+
+    &.hasExpanded {
+      max-height: 32px;
+
+      &.expanded {
+        max-height: 200px;
+      }
+    }
+  }
+
+  .ant-select.max-width {
+    max-width: 200px;
+    width: auto;
+  }
+
+  .select-trigger {
+    line-height: 32px;
+  }
+
+  .ant-list-item-meta-title>a,
+  .ant-list-item-meta-description .ant-tag,
+  .content {
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .ant-list-item-meta-title>a:hover {
+    color: #1890ff;
+  }
+
+  .article-content {
+    max-width: 720px;
+  }
+
+  .article-tip {
+    .ant-avatar {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .article-author {
+      margin-right: 5px;
+    }
+
+    .article-url {
+      margin: 0 5px;
+    }
+
+    .article-time {
+      margin-left: 16px;
+      color: rgba(0, 0, 0, .25);
+    }
+  }
+
+  .loadmore {
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    padding-top: 16px;
+  }
+}
