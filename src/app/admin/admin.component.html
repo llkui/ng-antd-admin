@@ -59,7 +59,11 @@
               </li>
             </ul>
           </li>
-          <li nz-menu-item>查询表格</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+            <a [routerLink]="'/list/table-list'">
+              <span>查询表格</span>
+            </a>
+          </li>
           <li nz-menu-item>标准列表</li>
           <li nz-menu-item>卡片列表</li>
         </ul>

@@ -1,0 +1,60 @@
+:host ::ng-deep {
+  .ant-form-item-label {
+    flex: 0 0 120px;
+  }
+
+  .ant-form-item-control {
+    flex: 1 1;
+  }
+
+  .expanded-icon {
+    transition: all 0.3s ease 0s;
+
+    &.expanded {
+      transform: rotate(0.5turn);
+    }
+  }
+
+  .table-toolbar {
+    .title {
+      color: rgba(0, 0, 0, .85);
+      font-size: 16px;
+    }
+
+    button {
+      margin-right: 5px;
+    }
+
+    a {
+      color: rgba(0, 0, 0, .75);
+    }
+  }
+
+  tr.selected>td {
+    background: #e6f7ff;
+    border-color: rgba(0, 0, 0, .03);
+  }
+
+  td.column-sort {
+    background: #fafafa;
+  }
+}
+
+.name-icon {
+  margin-inline-start: 4px;
+  color: rgba(0, 0, 0, .45);
+}
+
+.footer-bar {
+  padding: 0 24px;
+  background-color: #ffffff;
+  line-height: 44px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, .08), 0 -9px 28px 0 rgba(0, 0, 0, .05), 0 -12px 48px 16px rgba(0, 0, 0, .03);
+}
+
+.descriptions-extra {
+  font-weight: 400;
+  font-size: 14px;
+}

@@ -1,0 +1,351 @@
+<nz-page-header class="site-page-header" nzTitle="查询表格" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>列表页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>查询表格</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+<div class="content-section">
+  <nz-card>
+    <div nz-row [nzGutter]="16" #searchElement>
+      <div nz-col [nzSpan]="searchSpan" [class.hidden]="!showInfo.name">
+        <nz-form-item>
+          <nz-form-label nzFor="name" title="规格名称">
+            <span>规则名称</span>
+            <i nz-tooltip nzTooltipTitle="规格名称是唯一的key" nz-icon nzType="question-circle" nzTheme="outline"
+              class="name-icon"></i>
+          </nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="searchInfo.name" id="name" placeholder="请输入" class="w100">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="searchSpan" [class.hidden]="!showInfo.desc">
+        <nz-form-item>
+          <nz-form-label nzFor="desc" title="描述">描述</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="searchInfo.desc" id="desc" placeholder="请输入" class="w100">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="searchSpan" [class.hidden]="!showInfo.num">
+        <nz-form-item>
+          <nz-form-label nzFor="num" title="服务调用次数">服务调用次数</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="searchInfo.num" id="num" placeholder="请输入" class="w100">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="searchSpan" [class.hidden]="!showInfo.status">
+        <nz-form-item>
+          <nz-form-label nzFor="status" title="状态">状态</nz-form-label>
+          <nz-form-control>
+            <nz-select [(ngModel)]="searchInfo.status" [nzPlaceHolder]="'请选择'" nzAllowClear class="w100">
+              <nz-option nzValue="close" nzLabel="关闭"></nz-option>
+              <nz-option nzValue="run" nzLabel="运行中"></nz-option>
+              <nz-option nzValue="online" nzLabel="已上线"></nz-option>
+              <nz-option nzValue="abnormal" nzLabel="异常"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="searchSpan" [class.hidden]="!showInfo.time">
+        <nz-form-item>
+          <nz-form-label nzFor="time" title="上次调度时间">上次调度时间</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" [(ngModel)]="searchInfo.time"
+              [nzPlaceHolder]="'请选择'" class="w100"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="searchSpan" [nzOffset]="expandedOffset" class="text-right">
+        <button (click)="reset()" nz-button class="mr10">重置</button>
+        <button (click)="search()" nz-button [nzType]="'primary'" [nzLoading]="isSpinning" class="mr10">查询</button>
+        <a (click)="changeExpanded()" class="select-trigger">
+          <span>{{expanded ? '收起' : '展开'}}</span>
+          <i [class.expanded]="expanded" nz-icon nzType="down" nzTheme="outline" class="expanded-icon ml10"></i>
+        </a>
+      </div>
+    </div>
+  </nz-card>
+  <nz-card class="mt20">
+    <div class="flex table-toolbar">
+      <div class="title flex-1">查询表格</div>
+      <button (click)="add()" nz-button nzType="primary"><i nz-icon nzType="plus"></i>新建</button>
+      <a (click)="refresh()" nz-tooltip nzTooltipTitle="刷新" nz-button nzType="link">
+        <i nz-icon nzType="reload"></i>
+      </a>
+      <a nz-tooltip nzTooltipTitle="密度">
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" nz-button nzType="link">
+          <i nz-icon nzType="column-height"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item (click)="tableSize = 'default'">默认</li>
+            <li nz-menu-item (click)="tableSize = 'middle'" nzSelected>中等</li>
+            <li nz-menu-item (click)="tableSize = 'small'">紧凑</li>
+          </ul>
+        </nz-dropdown-menu>
+      </a>
+      <a nz-tooltip nzTooltipTitle="列设置">
+        <a nz-button nzType="link" nz-popover nzPopoverTrigger="click" [nzPopoverTitle]="thTitle"
+          [nzPopoverContent]="thContent" [nzPopoverPlacement]="'bottomRight'"
+          [nzPopoverOverlayClassName]="'list-table-list'">
+          <i nz-icon nzType="setting"></i>
+        </a>
+        <ng-template #thTitle>
+          <div class="flex">
+            <label nz-checkbox [nzChecked]="checkedTh" [nzIndeterminate]="indeterminateTh"
+              (nzCheckedChange)="onAllThChecked($event)">列展示</label>
+            <div class="flex-1"></div>
+            <a (click)="resetTh()">重置</a>
+          </div>
+        </ng-template>
+        <ng-template #thContent>
+          <nz-list nzItemLayout="horizontal" cdkDropList (cdkDropListDropped)="drop($event)">
+            <nz-list-item *ngFor="let item of thOfData" cdkDrag>
+              <nz-list-item-meta>
+                <nz-list-item-meta-title>
+                  <div class="flex">
+                    <span class="anticon" role="img" aria-label="info-darg-icon"
+                      style="padding-right: 6px; cursor: move; padding-top: 2px;">
+                      <svg width="1em" height="1em" viewBox="0 0 8 16">
+                        <g id="surface5">
+                          <path
+                            d="M 5 4.003906 C 5 3.449219 5.449219 3 6.003906 3 C 6.558594 3 7.007812 3.449219 7.007812 4.003906 C 7.007812 4.558594 6.558594 5.007812 6.003906 5.007812 C 5.449219 5.007812 5 4.558594 5 4.003906 Z M 5 8.25 C 5 7.695312 5.449219 7.246094 6.003906 7.246094 C 6.558594 7.246094 7.007812 7.695312 7.007812 8.25 C 7.007812 8.804688 6.558594 9.253906 6.003906 9.253906 C 5.449219 9.253906 5 8.804688 5 8.25 Z M 5 12.496094 C 5 11.941406 5.449219 11.492188 6.003906 11.492188 C 6.558594 11.492188 7.007812 11.941406 7.007812 12.496094 C 7.007812 13.050781 6.558594 13.5 6.003906 13.5 C 5.449219 13.5 5 13.050781 5 12.496094 Z M 9.554688 4.003906 C 9.554688 3.449219 10.003906 3 10.558594 3 C 11.113281 3 11.5625 3.449219 11.5625 4.003906 C 11.5625 4.558594 11.113281 5.007812 10.558594 5.007812 C 10.003906 5.007812 9.554688 4.558594 9.554688 4.003906 Z M 9.554688 8.25 C 9.554688 7.695312 10.003906 7.246094 10.558594 7.246094 C 11.113281 7.246094 11.5625 7.695312 11.5625 8.25 C 11.5625 8.804688 11.113281 9.253906 10.558594 9.253906 C 10.003906 9.253906 9.554688 8.804688 9.554688 8.25 Z M 9.554688 12.496094 C 9.554688 11.941406 10.003906 11.492188 10.558594 11.492188 C 11.113281 11.492188 11.5625 11.941406 11.5625 12.496094 C 11.5625 13.050781 11.113281 13.5 10.558594 13.5 C 10.003906 13.5 9.554688 13.050781 9.554688 12.496094 Z M 9.554688 12.496094 "
+                            style="fill: rgba(0, 0, 0, 0.45); fill-opacity: 1; fill-rule: nonzero; stroke: none;">
+                          </path>
+                        </g>
+                      </svg>
+                    </span>
+                    <label nz-checkbox [nzChecked]="setOfThCheckedId.has(item.id)"
+                      (nzCheckedChange)="onItemThChecked(item.id, $event)">{{item.value}}</label>
+                    <div class="flex-1"></div>
+                  </div>
+                </nz-list-item-meta-title>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </nz-list>
+        </ng-template>
+      </a>
+    </div>
+    <nz-alert *ngIf="selectedInfo.ids.length > 0" [nzType]="'info'"
+      [nzMessage]="'已选择 ' + selectedInfo.ids.length + ' 项'" [nzCloseText]="closeTpl" (nzOnClose)="removeSelect()"
+      class="mt10 mb10">
+    </nz-alert>
+    <ng-template #closeTpl>
+      <a>取消选择</a>
+    </ng-template>
+    <nz-table *ngIf="hasData" #rowSelectionTable #basicTable [nzData]="listOfData" [nzShowPagination]="false"
+      [nzPageSize]="pageSize" [nzSize]="tableSize" [nzLoading]="isSpinning"
+      (nzQueryParams)="onQueryParamsChange($event)" class="mt20">
+      <thead>
+        <tr>
+          <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+          <ng-container *ngFor="let th of thOfData">
+            <ng-container *ngIf="th.checked">
+              <ng-container [ngSwitch]="th.key">
+                <th *ngSwitchCase="'name'">
+                  规则名称
+                  <i nz-tooltip nzTooltipTitle="规则名称是唯一的 key" nz-icon nzType="info-circle" nzTheme="outline"
+                    class="name-icon"></i>
+                </th>
+                <th *ngSwitchCase="'desc'">描述</th>
+                <th *ngSwitchCase="'num'" nzShowSort nzColumnKey="num" [nzSortFn]="true">服务调用次数</th>
+                <th *ngSwitchCase="'status'">状态</th>
+                <th *ngSwitchCase="'time'" nzShowSort nzColumnKey="time" [nzSortFn]="true">上次调度时间</th>
+                <th *ngSwitchCase="'edit'">操作</th>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data" [class.selected]="setOfCheckedId.has(data.id)">
+          <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+          <ng-container *ngFor="let th of thOfData">
+            <ng-container *ngIf="th.checked">
+              <ng-container [ngSwitch]="th.key">
+                <td *ngSwitchCase="'name'"><a (click)="showItem(data)">{{ data.name }}</a></td>
+                <td *ngSwitchCase="'desc'">{{ data.desc }}</td>
+                <td *ngSwitchCase="'num'" [class.column-sort]="sortNum">{{ data.num }}万</td>
+                <td *ngSwitchCase="'status'">
+                  <ng-container [ngSwitch]="data.status">
+                    <nz-badge *ngSwitchCase="0" nzStatus="default" nzText="关闭"></nz-badge>
+                    <nz-badge *ngSwitchCase="1" nzStatus="success" nzText="已上线"></nz-badge>
+                    <nz-badge *ngSwitchCase="2" nzStatus="processing" nzText="运行中"></nz-badge>
+                    <nz-badge *ngSwitchCase="3" nzStatus="error" nzText="异常"></nz-badge>
+                  </ng-container>
+                </td>
+                <td *ngSwitchCase="'time'" [class.column-sort]="sortTime">{{ data.time }}</td>
+                <td *ngSwitchCase="'edit'">
+                  <a (click)="setup(data)">配置</a>
+                  <nz-divider nzType="vertical"></nz-divider>
+                  <a>订阅警报</a>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div class="mt10 text-right">
+      <nz-pagination [(nzPageIndex)]="current" [nzTotal]="total" [nzSize]="'small'" [(nzPageSize)]="pageSize"
+        [nzShowTotal]="totalTemplate" nzShowSizeChanger (nzPageIndexChange)="pageChange()"
+        (nzPageSizeChange)="pageSizeChange()">
+      </nz-pagination>
+      <ng-template #totalTemplate let-total>{{pagination}}/总共 {{total}} 条</ng-template>
+    </div>
+  </nz-card>
+</div>
+<nz-affix [nzOffsetBottom]="0" *ngIf="selectedInfo.ids.length > 0">
+  <div class="footer-bar flex">
+    <div class="flex-1">
+      已选择 <a>{{selectedInfo.ids.length}}</a> 项 服务调用次数总计 {{selectedInfo.num}} 万
+    </div>
+    <div>
+      <button (click)="deleteSelected()" nz-button class="mr10">批量删除</button>
+      <button nz-button [nzType]="'primary'">批量审批</button>
+    </div>
+  </div>
+</nz-affix>
+<nz-modal [(nzVisible)]="isVisibleAdd" nzTitle="新建规则" [nzFooter]="null" (nzOnCancel)="handleCancel()">
+  <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'" class="ml20 mr20">
+    <nz-form-item>
+      <nz-form-label nzFor="name" title="规则名称" nzRequired>
+        规则名称
+        <i nz-tooltip nzTooltipTitle="规则名称是唯一的 key" nz-icon nzType="info-circle" nzTheme="outline"
+          class="name-icon"></i>
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="'规则名称为必填项'">
+        <input nz-input id="name" formControlName="name" placeholder="请输入">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzFor="desc" title="描述">描述</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input id="desc" formControlName="desc" placeholder="请输入" rows="3"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <div>
+      <button (click)="resetAdd()" nz-button class="mr10">重置</button>
+      <button (click)="confirmAdd()" nz-button [nzType]="'primary'" [nzLoading]="isSpinningAdd">提交</button>
+    </div>
+  </form>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisibleSetup" [nzWidth]="640" nzTitle="新建规则" [nzFooter]="footerSetup"
+  (nzOnCancel)="handleCancelSetup()">
+  <div class="ml20 mr20">
+    <nz-steps [nzCurrent]="stepCurrent">
+      <nz-step nzTitle="基本信息"></nz-step>
+      <nz-step nzTitle="配置规则属性"> </nz-step>
+      <nz-step nzTitle="设定调度周期"></nz-step>
+    </nz-steps>
+    <form nz-form [formGroup]="validateForm" class="mt20">
+      <ng-container *ngIf="stepCurrent == 0">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="name" title="规则名称" nzRequired>规则名称</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入规则名称！'">
+            <input nz-input id="name" formControlName="name" placeholder="请输入">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="desc" title="描述" nzRequired>描述</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入至少五个字符的规则描述！'">
+            <textarea nz-input id="desc" formControlName="desc" placeholder="请输入" rows="3"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+      <ng-container *ngIf="stepCurrent == 1">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="object" title="监控对象">监控对象</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择监控对象！'">
+            <nz-select formControlName="object">
+              <nz-option nzValue="1" nzLabel="表一"></nz-option>
+              <nz-option nzValue="2" nzLabel="表二"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="template" title="规则模板">规则模板</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择规则模板！'">
+            <nz-select formControlName="template">
+              <nz-option nzValue="1" nzLabel="规则模板一"></nz-option>
+              <nz-option nzValue="2" nzLabel="规则模板二"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="type" title="规则类型">规则类型</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择规则类型！'">
+            <nz-radio-group formControlName="type">
+              <label nz-radio nzValue="1">强</label>
+              <label nz-radio nzValue="-1">弱</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+      <ng-container *ngIf="stepCurrent == 2">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="name" title="开始时间" nzRequired>开始时间</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择开始时间！'">
+            <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" formControlName="start_date"
+              [nzPlaceHolder]="'选择开始时间'" class="w100"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="cycle" title="调度周期">调度周期</nz-form-label>
+          <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择调度周期！'">
+            <nz-select formControlName="cycle">
+              <nz-option nzValue="month" nzLabel="月"></nz-option>
+              <nz-option nzValue="week" nzLabel="周"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+    </form>
+  </div>
+  <ng-template #footerSetup>
+    <div class="flex">
+      <div class="flex-1 text-left">
+        <button *ngIf="stepCurrent != 0" (click)="previous()" nz-button>上一步</button>
+      </div>
+      <button (click)="handleCancelSetup()" nz-button>取消</button>
+      <button (click)="next()" nz-button [nzType]="'primary'"
+        [nzLoading]="isSpinningSetup">{{stepCurrent == 2 ? '完成' : '下一步'}}</button>
+    </div>
+  </ng-template>
+</nz-modal>
+<nz-drawer *ngIf="laterShow" [nzClosable]="false" [nzVisible]="visibleDrawer" [nzWidth]="600" nzPlacement="right"
+  [nzTitle]="null" (nzOnClose)="closeDrawer()">
+  <nz-descriptions [nzTitle]="titleTpl" [nzColumn]="2">
+    <ng-template #titleTpl>
+      <div class="flex">
+        <div class="flex-1">{{selectedItem?.name}}</div>
+        <div class="descriptions-extra">
+          <a (click)="setup(selectedItem)">配置</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>订阅警报</a>
+        </div>
+      </div>
+    </ng-template>
+    <nz-descriptions-item [nzTitle]="nameTpl"><a>{{selectedItem?.name}}</a></nz-descriptions-item>
+    <ng-template #nameTpl>
+      规则名称
+      <i nz-tooltip nzTooltipTitle="规则名称是唯一的 key" nz-icon nzType="info-circle" nzTheme="outline" class="name-icon"></i>
+    </ng-template>
+    <nz-descriptions-item nzTitle="描述">{{selectedItem?.desc}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="服务调用次数">{{selectedItem?.num}}万</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="状态">
+      <ng-container [ngSwitch]="selectedItem?.status">
+        <nz-badge *ngSwitchCase="0" nzStatus="default" nzText="关闭"></nz-badge>
+        <nz-badge *ngSwitchCase="1" nzStatus="success" nzText="已上线"></nz-badge>
+        <nz-badge *ngSwitchCase="2" nzStatus="processing" nzText="运行中"></nz-badge>
+        <nz-badge *ngSwitchCase="3" nzStatus="error" nzText="异常"></nz-badge>
+      </ng-container>
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="上次调度时间">{{selectedItem?.time}}</nz-descriptions-item>
+  </nz-descriptions>
+</nz-drawer>
