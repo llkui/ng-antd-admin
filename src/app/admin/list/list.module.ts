@@ -30,17 +30,27 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 import { ListRoutingModule } from './list-routing.module';
 
 import { TableListComponent } from './table-list.component';
+import { BasicListComponent } from './basic-list.component';
+import { CardListComponent } from './card-list.component';
 
 @NgModule({
     declarations: [
-        TableListComponent
+        TableListComponent,
+        BasicListComponent,
+        CardListComponent
     ],
     exports: [
-        TableListComponent
+        TableListComponent,
+        BasicListComponent,
+        CardListComponent
     ],
     imports: [
         CommonModule,
@@ -74,6 +84,10 @@ import { TableListComponent } from './table-list.component';
         NzAffixModule,
         NzDrawerModule,
         NzDescriptionsModule,
+        NzProgressModule,
+        NzResultModule,
+        NzAvatarModule,
+        NzSpinModule,
         ListRoutingModule
     ]
 })

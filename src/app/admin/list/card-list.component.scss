@@ -1,0 +1,72 @@
+:host ::ng-deep {
+  .ant-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ant-card-body {
+    &:hover .ant-card-meta-title {
+      color: #1890ff;
+    }
+  }
+
+  .ant-card-meta-description {
+    color: rgba(0, 0, 0, .85);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ant-card-actions {
+    background: #ffffff;
+  }
+}
+
+.contentLink {
+  margin-top: 16px;
+
+  a {
+    margin-right: 32px;
+
+    img {
+      width: 24px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.container-extra {
+  min-width: 242px;
+  margin-left: 88px;
+  text-align: right;
+}
+
+.container-extraImg {
+  width: 155px;
+  margin-top: -20px;
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+}
+
+.newButton {
+  width: 100%;
+  height: 188px;
+  color: rgba(0, 0, 0, .45);
+  background-color: #fff;
+  border-color: #d9d9d9;
+  border-style: dashed;
+
+  &:hover {
+    border-color: #1890ff;
+    color: #1890ff;
+  }
+
+  &:focus {
+    border-color: #1890ff;
+    color: #1890ff;
+  }
+}

@@ -1,0 +1,55 @@
+<nz-page-header class="site-page-header" nzTitle="卡片列表" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>列表页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>卡片列表</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    <div class="flex">
+      <div class="container-content flex-1">
+        <div>
+          段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。
+        </div>
+        <div class="contentLink">
+          <a><img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg">快速开始</a>
+          <a><img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg">产品简介</a>
+          <a><img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg">产品文档</a>
+        </div>
+      </div>
+      <div class="container-extra">
+        <div class="container-extraImg">
+          <img alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png">
+        </div>
+      </div>
+    </div>
+  </nz-page-header-content>
+</nz-page-header>
+<div class="content-section">
+  <nz-spin [nzSpinning]="isSpinning">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzMd]="8" [nzLg]="6">
+        <button nz-button class="newButton mt20">
+          <i nz-icon nzType="plus" nzTheme="outline"></i>
+          <span>新增产品</span>
+        </button>
+      </div>
+      <div nz-col [nzMd]="8" [nzLg]="6" *ngFor="let item of list">
+        <nz-card nzHoverable class="mt20" [nzActions]="[actionSetting, actionEdit]">
+          <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="item.name" [nzDescription]="item.desc">
+          </nz-card-meta>
+        </nz-card>
+        <ng-template #avatarTemplate>
+          <nz-avatar [nzSrc]="item.avatar"></nz-avatar>
+        </ng-template>
+        <ng-template #actionSetting>
+          操作一
+        </ng-template>
+        <ng-template #actionEdit>
+          操作二
+        </ng-template>
+      </div>
+    </div>
+  </nz-spin>
+</div>

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TableListComponent } from './table-list.component';
+import { BasicListComponent } from './basic-list.component';
+import { CardListComponent } from './card-list.component';
 
 const routes: Routes = [
     {
@@ -11,6 +13,14 @@ const routes: Routes = [
     {
         path: 'table-list',
         component: TableListComponent
+    },
+    {
+        path: 'basic-list',
+        component: BasicListComponent
+    },
+    {
+        path: 'card-list',
+        component: CardListComponent
     }
 ];
 

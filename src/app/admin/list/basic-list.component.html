@@ -1,0 +1,141 @@
+<nz-page-header class="site-page-header" nzTitle="标准列表" nzCotent>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>列表页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>标准列表</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+<div class="content-section">
+  <nz-card>
+    <div nz-row>
+      <div nz-col [nzXs]="24" [nzSm]="8" class="headerInfo">
+        <span>我的待办</span>
+        <p>8个任务</p>
+        <em></em>
+      </div>
+      <div nz-col [nzXs]="24" [nzSm]="8" class="headerInfo">
+        <span>本周任务平均处理时间</span>
+        <p>32分钟</p>
+        <em></em>
+      </div>
+      <div nz-col [nzXs]="24" [nzSm]="8" class="headerInfo">
+        <span>本周完成任务数</span>
+        <p>24个任务</p>
+        <em></em>
+      </div>
+    </div>
+  </nz-card>
+  <nz-card [nzTitle]="'基本列表'" [nzExtra]="extraTpl" class="mt20">
+    <ng-template #extraTpl>
+      <nz-radio-group [(ngModel)]="status" class="mr10">
+        <label nz-radio-button nzValue="all">全部</label>
+        <label nz-radio-button nzValue="ongoing">进行中</label>
+        <label nz-radio-button nzValue="stay">等待中</label>
+      </nz-radio-group>
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="请输入" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </ng-template>
+    <button (click)="add()" nz-button nzType="dashed" nzBlock>
+      <i nz-icon nzType="plus" nzTheme="outline"></i>
+      <span>添加</span>
+    </button>
+    <nz-list class="demo-loadmore-list" [nzLoading]="isSpinning">
+      <nz-list-item *ngFor="let item of list">
+        <nz-list-item-meta>
+          <nz-list-item-meta-avatar [nzSrc]="item.avatar"> </nz-list-item-meta-avatar>
+          <nz-list-item-meta-title>
+            <a>{{ item.name }}</a>
+          </nz-list-item-meta-title>
+          <nz-list-item-meta-description>
+            {{ item.desc }}
+          </nz-list-item-meta-description>
+        </nz-list-item-meta>
+        <div class="listContent">
+          <div class="listContentItem">
+            <div>Owner</div>
+            <div>{{item.owner}}</div>
+          </div>
+          <div class="listContentItem">
+            <div>开始时间</div>
+            <div>{{item.time}}</div>
+          </div>
+          <div class="listContentItem">
+            <nz-progress [nzPercent]="item.progress" [nzStatus]="item.progress_status"></nz-progress>
+          </div>
+        </div>
+        <ul nz-list-item-actions>
+          <nz-list-item-action>
+            <a (click)="edit(item)">编辑</a>
+          </nz-list-item-action>
+          <nz-list-item-action>
+            <a nz-dropdown [nzDropdownMenu]="menu">
+              更多<i nz-icon nzType="down" nzTheme="outline"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item (click)="edit(item)">编辑</li>
+                <li nz-menu-item (click)="deleteItem()">删除</li>
+              </ul>
+            </nz-dropdown-menu>
+          </nz-list-item-action>
+        </ul>
+      </nz-list-item>
+      <nz-list-pagination>
+        <nz-pagination [nzPageIndex]="1" [nzPageSize]="5" [nzTotal]="50" nzShowQuickJumper nzShowSizeChanger>
+        </nz-pagination>
+      </nz-list-pagination>
+    </nz-list>
+  </nz-card>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="任务添加" [nzWidth]="640" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzOkText]="'保存'">
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="name" nzRequired>任务名称</nz-form-label>
+      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入任务名称'">
+        <input nz-input id="name" formControlName="name" placeholder="请输入">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="time" nzRequired>开始时间</nz-form-label>
+      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择开始时间'">
+        <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" formControlName="time" [nzPlaceHolder]="'请选择'"
+          class="w100">
+        </nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="user" nzRequired>任务负责人</nz-form-label>
+      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择任务负责人'">
+        <nz-select formControlName="user" [nzPlaceHolder]="'请选择'">
+          <nz-option nzValue="1" nzLabel="付小小"></nz-option>
+          <nz-option nzValue="2" nzLabel="曲丽丽"></nz-option>
+          <nz-option nzValue="3" nzLabel="林东东"></nz-option>
+          <nz-option nzValue="4" nzLabel="周星星"></nz-option>
+          <nz-option nzValue="5" nzLabel="吴加好"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="desc">产品描述</nz-form-label>
+      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入至少五个字符的产品描述！'">
+        <textarea nz-input id="desc" rows="3" formControlName="desc" placeholder="请输入至少五个字符"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisibleResult" [nzTitle]="null" [nzWidth]="640" [nzFooter]="null"
+  (nzOnCancel)="cancelResult()">
+  <nz-result nzStatus="success" nzTitle="操作成功" nzSubTitle="一系列的信息描述，很短同样也可以带标点。">
+    <div nz-result-extra>
+      <button (click)="okResult()" nz-button nzType="primary">知道了</button>
+    </div>
+  </nz-result>
+</nz-modal>

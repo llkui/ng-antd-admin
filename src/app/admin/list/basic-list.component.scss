@@ -1,0 +1,49 @@
+:host ::ng-deep {
+  .ant-input-group-wrapper {
+    width: inherit;
+  }
+
+  .listContentItem {
+    display: inline-block;
+    margin-left: 40px;
+    color: rgba(0, 0, 0, .45);
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  .ant-progress {
+    width: 180px;
+  }
+
+  .ant-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+  }
+}
+
+.headerInfo {
+  position: relative;
+  text-align: center;
+
+  span {
+    margin-bottom: 4px;
+    color: rgba(0, 0, 0, .45);
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, .85);
+    margin: 0;
+  }
+
+  em {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 56px;
+    background-color: #f0f0f0;
+  }
+}
