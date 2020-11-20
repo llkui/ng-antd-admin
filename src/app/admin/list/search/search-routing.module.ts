@@ -18,7 +18,7 @@ const routes: Routes = [
             {
                 path: 'articles',
                 component: SearchArticlesComponent,
-                data: { title: '搜索列表（应用）' }
+                data: { title: '搜索列表（文章）' }
             },
             {
                 path: 'projects',

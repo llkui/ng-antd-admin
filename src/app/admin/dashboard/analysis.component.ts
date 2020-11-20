@@ -11,7 +11,7 @@ import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, 
     styleUrls: ['./analysis.component.scss']
 })
 
-export class DashboardAnalysisComponent implements OnInit, AfterViewInit {
+export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
     loading = true;
     tabIndex = 0;
     date = [new Date(), new Date()];

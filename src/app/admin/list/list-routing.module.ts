@@ -12,15 +12,18 @@ const routes: Routes = [
     },
     {
         path: 'table-list',
-        component: TableListComponent
+        component: TableListComponent,
+        data: { title: '查询表格' }
     },
     {
         path: 'basic-list',
-        component: BasicListComponent
+        component: BasicListComponent,
+        data: { title: '标准列表' }
     },
     {
         path: 'card-list',
-        component: CardListComponent
+        component: CardListComponent,
+        data: { title: '卡片列表' }
     }
 ];
 

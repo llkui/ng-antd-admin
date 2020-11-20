@@ -1,0 +1,32 @@
+.content {
+  display: flex;
+}
+
+.extra>div {
+  text-align: right;
+  display: flex;
+  width: max-content;
+  justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+  .content {
+    display: block;
+  }
+
+  .main {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .extra {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+.title-icon {
+  color: rgba(0, 0, 0, 0.43);
+  margin-left: 4px;
+}

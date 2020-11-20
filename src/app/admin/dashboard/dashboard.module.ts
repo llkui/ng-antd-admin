@@ -19,14 +19,20 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-import { DashboardAnalysisComponent } from './analysis.component';
+import { AnalysisDashboardComponent } from './analysis.component';
+import { MonitorDashboardComponent } from './monitor.component';
+import { WorkplaceDashboardComponent } from './workplace.component';
 
 @NgModule({
     declarations: [
-        DashboardAnalysisComponent
+        AnalysisDashboardComponent,
+        MonitorDashboardComponent,
+        WorkplaceDashboardComponent
     ],
     exports: [
-        DashboardAnalysisComponent
+        AnalysisDashboardComponent,
+        MonitorDashboardComponent,
+        WorkplaceDashboardComponent
     ],
     imports: [
         CommonModule,
