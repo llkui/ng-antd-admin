@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  .ant-steps-item-title {
+    color: rgba(0, 0, 0, .85);
+    font-size: 14px;
+  }
+
+  .ant-steps-item-description {
+    color: rgba(0, 0, 0, .85) !important;
+    font-size: 12px;
+  }
+}

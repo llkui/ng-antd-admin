@@ -1,0 +1,16 @@
+:host ::ng-deep {
+  .desc {
+    h4 {
+      color: rgba(0, 0, 0, .85);
+      font-size: 16px;
+    }
+
+    p {
+      color: rgba(0, 0, 0, .85);
+    }
+
+    a {
+      margin-left: 16px;
+    }
+  }
+}

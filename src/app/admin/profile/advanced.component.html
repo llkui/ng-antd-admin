@@ -80,8 +80,7 @@
       <span *ngIf="index != 1" style="margin-left: -100%;">
         <ng-template [ngTemplateOutlet]="dot"></ng-template>
       </span>
-      <span *ngIf="index == 1" nz-popover [nzPopoverContent]="trialPopTpl" [nzPopoverPlacement]="'topLeft'"
-        style="margin-left: -100%;">
+      <span *ngIf="index == 1" nz-popover [nzPopoverContent]="trialPopTpl" style="margin-left: -100%;">
         <ng-template [ngTemplateOutlet]="dot"></ng-template>
       </span>
     </ng-template>

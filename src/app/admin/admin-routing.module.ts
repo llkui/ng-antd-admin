@@ -42,6 +42,14 @@ const adminRoutes: Routes = [
             {
                 path: 'profile',
                 loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+            },
+            {
+                path: 'result',
+                loadChildren: () => import('./result/result.module').then(m => m.ResultModule)
+            },
+            {
+                path: 'exception',
+                loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule)
             }
         ]
     }

@@ -2,7 +2,7 @@
   <nz-sider>
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
+      <li nz-menu-item nzMatchRouter>
         <a [routerLink]="'/home'">
           <i nz-icon nzType="home" nzTheme="outline"></i>
           <span>Home</span>
@@ -10,17 +10,17 @@
       </li>
       <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/dashboard/analysis'">
               <span>分析页</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/dashboard/monitor'">
               <span>监控页</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/dashboard/workplace'">
               <span>工作台</span>
             </a>
@@ -29,17 +29,17 @@
       </li>
       <li nz-submenu nzTitle="表单页" nzIcon="form">
         <ul>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/form/basic-form'">
               <span>基本表单</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/form/step-form'">
               <span>分步表单</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/form/advanced-form'">
               <span>高级表单</span>
             </a>
@@ -50,55 +50,88 @@
         <ul>
           <li nz-submenu nzTitle="搜索列表">
             <ul>
-              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+              <li nz-menu-item nzMatchRouter>
                 <a [routerLink]="'/list/search/articles'">
                   <span>搜索列表（文章）</span>
                 </a>
               </li>
-              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+              <li nz-menu-item nzMatchRouter>
                 <a [routerLink]="'/list/search/projects'">
                   <span>搜索列表（项目）</span>
                 </a>
               </li>
-              <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+              <li nz-menu-item nzMatchRouter>
                 <a [routerLink]="'/list/search/applications'">
                   <span>搜索列表（应用）</span>
                 </a>
               </li>
             </ul>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/list/table-list'">
               <span>查询表格</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/list/basic-list'">
               <span>标准列表</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/list/card-list'">
               <span>卡片列表</span>
             </a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="详情页" nzIcon="form">
+      <li nz-submenu nzTitle="详情页" nzIcon="profile">
         <ul>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/profile/basic'">
               <span>基础详情页</span>
             </a>
           </li>
-          <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="'/profile/advanced'">
               <span>高级详情页</span>
             </a>
           </li>
         </ul>
       </li>
-      <li nz-menu-item>
+      <li nz-submenu nzTitle="结果页" nzIcon="check-circle">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/result/success'">
+              <span>成功页</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/result/fail'">
+              <span>失败页</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="异常页" nzIcon="warning">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/exception/403'">
+              <span>403</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/exception/404'">
+              <span>404</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/exception/500'">
+              <span>500</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item nzMatchRouter>
         <a [routerLink]="'/changelog'">
           <i nz-icon nzType="tag" nzTheme="outline"></i>
           <span>更新日志</span>

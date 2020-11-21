@@ -1,0 +1,43 @@
+<div class="content-section">
+  <nz-card>
+    <nz-result nzStatus="success" nzTitle="提交成功"
+      nzSubTitle="提交结果页用于反馈一系列操作任务的处理结果， 如果仅是简单操作，使用 Message 全局提示反馈即可。 本文字区域可以展示简单的补充说明，如果有类似展示 “单据”的需求，下面这个灰色区域可以呈现比较复杂的内容。">
+      <div nz-result-content>
+        <nz-descriptions nzTitle="项目名称">
+          <nz-descriptions-item nzTitle="项目 ID">23421</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="负责人">曲丽丽</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="生效时间">2016-12-12 ~ 2017-12-12</nz-descriptions-item>
+        </nz-descriptions>
+        <div class="mt20">
+          <nz-steps [nzCurrent]="1" nzProgressDot>
+            <nz-step nzTitle="创建项目" [nzDescription]="createTpl"></nz-step>
+            <nz-step nzTitle="部门初审" [nzDescription]="trialTpl"></nz-step>
+            <nz-step nzTitle="财务复核"></nz-step>
+            <nz-step nzTitle="完成"></nz-step>
+          </nz-steps>
+          <ng-template #createTpl>
+            <div class="mt10">
+              <span class="mr10">曲丽丽</span>
+              <i nz-icon nzType="dingding" nzTheme="outline" style="color: rgb(0, 160, 233);"></i>
+            </div>
+            <div>
+              2016-12-12 12:32
+            </div>
+          </ng-template>
+          <ng-template #trialTpl>
+            <div class="mt10">
+              <span class="mr10">周毛毛</span>
+              <i nz-icon nzType="dingding" nzTheme="outline" style="color: rgb(0, 160, 233);"></i>
+              <a>催一下</a>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div nz-result-extra>
+        <button nz-button nzType="primary">返回列表</button>
+        <button nz-button>查看项目</button>
+        <button nz-button>打印</button>
+      </div>
+    </nz-result>
+  </nz-card>
+</div>
