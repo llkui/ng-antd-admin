@@ -50,6 +50,10 @@ const adminRoutes: Routes = [
             {
                 path: 'exception',
                 loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule)
+            },
+            {
+                path: 'account',
+                loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
             }
         ]
     }

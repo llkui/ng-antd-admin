@@ -1,0 +1,175 @@
+<div class="content-section">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzMd]="24" [nzLg]="7">
+      <nz-card>
+        <nz-skeleton [nzActive]="true" [nzLoading]="isSpinning">
+          <div class="avatarHolder">
+            <img alt="" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png">
+            <div class="name">Serati Ma</div>
+            <div>海纳百川，有容乃大</div>
+          </div>
+          <div class="detail">
+            <p><i nz-icon nzType="contacts" nzTheme="outline"></i>交互专家</p>
+            <p><i nz-icon nzType="cluster" nzTheme="outline"></i>蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED</p>
+            <p><i nz-icon nzType="home" nzTheme="outline"></i>浙江省杭州市</p>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="tags">
+            <div class="tagsTitle">标签</div>
+            <nz-tag *ngFor="let tag of tags; let i = index">
+              {{ sliceTagName(tag) }}
+            </nz-tag>
+            <nz-tag *ngIf="!inputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
+              <i nz-icon nzType="plus"></i>
+            </nz-tag>
+            <input #inputElement nz-input nzSize="small" *ngIf="inputVisible" type="text" [(ngModel)]="inputValue"
+              style="width: 78px;" (blur)="handleInputConfirm()" (keydown.enter)="handleInputConfirm()" />
+          </div>
+          <nz-divider></nz-divider>
+          <div class="team">
+            <div class="teamTitle">团队</div>
+            <div nz-row [nzGutter]="36">
+              <div nz-col [nzLg]="24" [nzXl]="12" *ngFor="let team of teamList">
+                <a>
+                  <nz-avatar nzIcon="team" [nzSrc]="team.avatar"></nz-avatar>
+                  {{team.name}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </nz-skeleton>
+      </nz-card>
+    </div>
+    <div nz-col [nzMd]="24" [nzLg]="17">
+      <nz-card style="width: 100%;">
+        <nz-card-tab>
+          <nz-tabset nzSize="large" [(nzSelectedIndex)]="selectedIndex">
+            <nz-tab [nzTitle]="articleTpl"></nz-tab>
+            <nz-tab [nzTitle]="projectTpl"></nz-tab>
+            <nz-tab [nzTitle]="applicationTpl"></nz-tab>
+          </nz-tabset>
+        </nz-card-tab>
+        <ng-template #articleTpl>
+          <span>
+            文章<span style="font-size: 14px;" class="ml5">(8)</span>
+          </span>
+        </ng-template>
+        <ng-template #projectTpl>
+          <span>
+            应用<span style="font-size: 14px;" class="ml5">(8)</span>
+          </span>
+        </ng-template>
+        <ng-template #applicationTpl>
+          <span>
+            项目<span style="font-size: 14px;" class="ml5">(8)</span>
+          </span>
+        </ng-template>
+        <ng-container [ngSwitch]="selectedIndex">
+          <section *ngSwitchCase="0" class="article">
+            <nz-list nzItemLayout="vertical">
+              <nz-list-item *ngFor="let item of articleList">
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <a>{{item.title}}</a>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    <nz-tag *ngFor="let tag of item.tagList">{{tag.name}}</nz-tag>
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <div class="article-content">
+                  <div class="content mb10">{{item.content}}</div>
+                  <div class="flex article-tip">
+                    <nz-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+                    <a class="article-author">{{item.author}}</a>
+                    <span>发布在</span>
+                    <a class="article-url">{{item.href}}</a>
+                    <span class="article-time">{{item.time}}</span>
+                  </div>
+                </div>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><i nz-icon nzType="star-o" style="margin-right: 8px;"></i> {{item.start}}
+                  </nz-list-item-action>
+                  <nz-list-item-action><i nz-icon nzType="like" style="margin-right: 8px;"></i> {{item.like}}
+                  </nz-list-item-action>
+                  <nz-list-item-action><i nz-icon nzType="message" style="margin-right: 8px;"></i> {{item.message}}
+                  </nz-list-item-action>
+                </ul>
+                <nz-list-item-extra>
+                </nz-list-item-extra>
+              </nz-list-item>
+            </nz-list>
+          </section>
+          <section *ngSwitchCase="1" class="application">
+            <div nz-row [nzGutter]="18">
+              <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let application of applicationList">
+                <nz-card nzHoverable [nzActions]="[actionDownload, actionEdit, actionShareAlt, actionEllipsis]"
+                  class="mb20">
+                  <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="application.title" [nzDescription]="descTpl">
+                  </nz-card-meta>
+                </nz-card>
+                <ng-template #descTpl>
+                  <div nz-row>
+                    <div nz-col [nzSpan]="12">
+                      <p class="user-title">活跃用户</p>
+                      <div>
+                        <span class="user-number">{{application.activeUser}}</span>
+                        <span class="user-unit">万</span>
+                      </div>
+                    </div>
+                    <div nz-col [nzSpan]="12">
+                      <p class="user-title">新增用户</p>
+                      <div>
+                        <span class="user-number">{{application.newUser | number}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template #avatarTemplate>
+                  <nz-avatar [nzSrc]="application.cover"></nz-avatar>
+                </ng-template>
+                <ng-template #actionDownload>
+                  <i nz-tooltip nzTooltipTitle="下载" nz-icon nzType="download"></i>
+                </ng-template>
+                <ng-template #actionEdit>
+                  <i nz-tooltip nzTooltipTitle="编辑" nz-icon nzType="edit"></i>
+                </ng-template>
+                <ng-template #actionShareAlt>
+                  <i nz-tooltip nzTooltipTitle="分享" nz-icon nzType="share-alt"></i>
+                </ng-template>
+                <ng-template #actionEllipsis>
+                  <i nz-dropdown [nzDropdownMenu]="menu" nz-icon nzType="ellipsis"></i>
+                  <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                      <li nz-menu-item>1st menu item</li>
+                      <li nz-menu-item>2nd menu item</li>
+                      <li nz-menu-item>3d menu item</li>
+                    </ul>
+                  </nz-dropdown-menu>
+                </ng-template>
+              </div>
+            </div>
+          </section>
+          <section *ngSwitchCase="2" class="project">
+            <div nz-row [nzGutter]="18">
+              <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let project of projectList">
+                <nz-card nzHoverable [nzCover]="coverTemplate" class="mb20">
+                  <nz-card-meta [nzTitle]="project.title" [nzDescription]="project.desc"></nz-card-meta>
+                  <div class="cardItemContent flex">
+                    <span>{{project.time}}</span>
+                    <div class="cardItemMember">
+                      <nz-avatar *ngFor="let member of project.memberList" nz-tooltip [nzTooltipTitle]="member.name"
+                        nzIcon="user" [nzSrc]="member.cover"></nz-avatar>
+                    </div>
+                  </div>
+                </nz-card>
+                <ng-template #coverTemplate>
+                  <img [alt]="project.title" [src]="project.cover" />
+                </ng-template>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+      </nz-card>
+    </div>
+  </div>
+</div>

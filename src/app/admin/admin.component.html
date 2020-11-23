@@ -131,6 +131,15 @@
           </li>
         </ul>
       </li>
+      <li nz-submenu nzTitle="个人页" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="'/account/center'">
+              <span>个人中心</span>
+            </a>
+          </li>
+        </ul>
+      </li>
       <li nz-menu-item nzMatchRouter>
         <a [routerLink]="'/changelog'">
           <i nz-icon nzType="tag" nzTheme="outline"></i>
