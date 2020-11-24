@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -14,21 +14,30 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 
 import { AccountRoutingModule } from './account-routing.module';
 
 import { CenterAccountComponent } from './center.component';
+import { SettingsAccountComponent } from './settings.component';
 
 @NgModule({
     declarations: [
-        CenterAccountComponent
+        CenterAccountComponent,
+        SettingsAccountComponent
     ],
     exports: [
-        CenterAccountComponent
+        CenterAccountComponent,
+        SettingsAccountComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         NzGridModule,
         NzCardModule,
         NzIconModule,
@@ -41,6 +50,11 @@ import { CenterAccountComponent } from './center.component';
         NzDropDownModule,
         NzToolTipModule,
         NzSkeletonModule,
+        NzFormModule,
+        NzSelectModule,
+        NzButtonModule,
+        NzUploadModule,
+        NzSwitchModule,
         AccountRoutingModule
     ]
 })

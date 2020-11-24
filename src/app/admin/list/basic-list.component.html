@@ -45,7 +45,7 @@
       <i nz-icon nzType="plus" nzTheme="outline"></i>
       <span>添加</span>
     </button>
-    <nz-list class="demo-loadmore-list" [nzLoading]="isSpinning">
+    <nz-list [nzLoading]="isSpinning">
       <nz-list-item *ngFor="let item of list">
         <nz-list-item-meta>
           <nz-list-item-meta-avatar [nzSrc]="item.avatar"> </nz-list-item-meta-avatar>
