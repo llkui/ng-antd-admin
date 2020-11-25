@@ -16,6 +16,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -51,6 +56,11 @@ import { WorkplaceDashboardComponent } from './workplace.component';
         NzRadioModule,
         NzTableModule,
         NzBadgeModule,
+        NzPageHeaderModule,
+        NzBreadCrumbModule,
+        NzStatisticModule,
+        NzAvatarModule,
+        NzListModule,
         DashboardRoutingModule
     ]
 })

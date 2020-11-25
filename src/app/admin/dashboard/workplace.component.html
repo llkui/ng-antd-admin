@@ -1,3 +1,136 @@
+<nz-page-header class="site-page-header" nzTitle="工作台">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="'/home'">首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+    <nz-breadcrumb-item>工作台</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    <div class="content">
+      <div class="main">
+        <div class="avatar">
+          <nz-avatar [nzSize]="72" nzIcon="user"
+            [nzSrc]="'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'"></nz-avatar>
+        </div>
+        <div class="info">
+          <div class="title">早安，Serati Ma，祝你开心每一天！</div>
+          <div>交互专家 |蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED</div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="statItem">
+          <nz-statistic nzTitle="项目数" [nzValue]="56"></nz-statistic>
+        </div>
+        <div class="statItem">
+          <nz-statistic nzTitle="团队内排名" [nzValue]="8" [nzSuffix]="'/ 24'"></nz-statistic>
+        </div>
+        <div class="statItem">
+          <nz-statistic nzTitle="项目访问" [nzValue]="(2223 | number)!"></nz-statistic>
+        </div>
+      </div>
+    </div>
+  </nz-page-header-content>
+</nz-page-header>
 <div class="content-section">
-  development...
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="16">
+      <nz-card nzTitle="进行中的项目" [nzExtra]="extraTemplate">
+        <div nz-card-grid *ngFor="let project of projectList">
+          <nz-card [nzBordered]="false">
+            <nz-card-meta [nzTitle]="titleTpl" [nzDescription]="descTpl">
+            </nz-card-meta>
+            <ng-template #titleTpl>
+              <div class="flex">
+                <nz-avatar [nzSize]="24" [nzSrc]="project.avatar">
+                </nz-avatar>
+                <a class="projectName">{{project.name}}</a>
+              </div>
+            </ng-template>
+            <ng-template #descTpl>
+              <div class="projectDesc">{{project.desc}}</div>
+              <div class="flex projectInfo">
+                <a class="projectGroup">{{project.group}}</a>
+                <div class="flex-1 text-right">{{project.time}}</div>
+              </div>
+            </ng-template>
+          </nz-card>
+        </div>
+      </nz-card>
+      <ng-template #extraTemplate>
+        <a>全部项目</a>
+      </ng-template>
+      <nz-card nzTitle="动态" class="mt20">
+        <nz-list nzItemLayout="horizontal" class="dynamicList">
+          <nz-list-item *ngFor="let item of dynamicList">
+            <nz-list-item-meta>
+              <nz-list-item-meta-avatar [nzSrc]="item.avatar">
+              </nz-list-item-meta-avatar>
+              <nz-list-item-meta-title>
+                <ng-container [ngSwitch]="item.type">
+                  <ng-container *ngSwitchCase="'createProject'">
+                    <a class="dynamicUser">{{item.user}}</a>
+                    <span> 在 </span>
+                    <a>{{item.group}}</a>
+                    <span> 新建项目 </span>
+                    <a>{{item.project}}</a>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'updateStatus'">
+                    <a class="dynamicUser">{{item.user}}</a>
+                    <span> 将 </span>
+                    <a>{{item.project}}</a>
+                    <span> 更新至 </span>
+                    <a>{{item.project_status}}</a>
+                    <span> 状态</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'release'">
+                    <a class="dynamicUser">{{item.user}}</a>
+                    <span> 在 </span>
+                    <a>{{item.group}}</a>
+                    <span> 发布了 </span>
+                    <a>{{item.project}}</a>
+                  </ng-container>
+                </ng-container>
+              </nz-list-item-meta-title>
+              <nz-list-item-meta-description>
+                {{item.time}}
+              </nz-list-item-meta-description>
+            </nz-list-item-meta>
+          </nz-list-item>
+        </nz-list>
+      </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="8">
+      <nz-card nzTitle="快速开始 / 便捷导航">
+        <div class="linkGroup">
+          <a *ngFor="let link of linkList">{{link}}</a>
+          <button nz-button [nzSize]="'small'">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+            <span>添加</span>
+          </button>
+        </div>
+      </nz-card>
+      <nz-card nzTitle="XX 指数" class="mt20">
+        <div id="exponent"></div>
+        <div nz-row>
+          <div nz-col [nzSpan]="8" *ngFor="let type of typeList" class="legendItem" (click)="changeType(type)">
+            <p>
+              <nz-badge [nzColor]="type.checked ? type.color : '#AAAAAA'" [nzText]="type.name"></nz-badge>
+            </p>
+            <h6>{{type.total}}</h6>
+          </div>
+        </div>
+      </nz-card>
+      <nz-card nzTitle="团队" class="mt20">
+        <div nz-row [nzGutter]="36" class="team">
+          <div nz-col [nzLg]="24" [nzXl]="12" *ngFor="let team of teamList">
+            <a>
+              <nz-avatar nzIcon="team" [nzSrc]="team.avatar" [nzSize]="24"></nz-avatar>
+              {{team.name}}
+            </a>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+  </div>
 </div>
