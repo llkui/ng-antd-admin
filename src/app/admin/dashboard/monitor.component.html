@@ -1,3 +1,70 @@
 <div class="content-section">
-  development...
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="18">
+      <nz-card nzTitle="活动实时交易情况">
+        <div nz-row>
+          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6">
+            <nz-statistic [nzValue]="(1949101 | number)! + '元'" [nzTitle]="'今日交易总额'"></nz-statistic>
+          </div>
+          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6">
+            <nz-statistic [nzValue]="'92%'" [nzTitle]="'销售目标完成率'"></nz-statistic>
+          </div>
+          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6">
+            <nz-countdown [nzValue]="activity" [nzTitle]="'活动剩余时间'" [nzFormat]="'HH:mm:ss:SSS'"></nz-countdown>
+          </div>
+          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6">
+            <nz-statistic [nzValue]="(234 | number)! + '元'" [nzTitle]="'每秒交易总额'"></nz-statistic>
+          </div>
+        </div>
+        <div class="mt20 map" nz-tooltip nzTooltipTitle="待完善"></div>
+      </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="6">
+      <nz-card nzTitle="活动情况预测">
+        <nz-statistic [nzValue]="'有望达到预期'" [nzTitle]="'目标评估'"></nz-statistic>
+        <div class="predict">
+          <div id="predict"></div>
+          <div class="flex">
+            <div>00:00</div>
+            <div class="flex-1 text-center">12:00</div>
+            <div>23:00</div>
+          </div>
+          <div class="info">
+            <p>{{predictFirst}} 亿元</p>
+            <p>{{predictSecond}} 亿元</p>
+          </div>
+        </div>
+      </nz-card>
+      <nz-card nzTitle="券核效率" class="mt20">
+        <div id="efficiency"></div>
+      </nz-card>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="24" class="mt20">
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzLg]="24" [nzXl]="12">
+      <nz-card nzTitle="各品类占比">
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <div id="type1"></div>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <div id="type2"></div>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <div id="type3"></div>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzLg]="12" [nzXl]="6">
+      <nz-card nzTitle="热门搜索">
+        <div id="city"></div>
+      </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzLg]="12" [nzXl]="6">
+      <nz-card nzTitle="资源剩余">
+        <div class="resource" nz-tooltip nzTooltipTitle="待完善"></div>
+      </nz-card>
+    </div>
+  </div>
 </div>

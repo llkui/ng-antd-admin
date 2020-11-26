@@ -1,0 +1,24 @@
+.map {
+  width: 100%;
+  height: 490px;
+  background: url('./../../../assets/images/map.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+.resource {
+  margin: 0 auto;
+  width: 128px;
+  height: 128px;
+  background: url('./../../../assets/images/resource.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+.predict {
+  position: relative;
+  margin-top: 40px;
+
+  .info {
+    position: absolute;
+    top: -30px;
+  }
+}
