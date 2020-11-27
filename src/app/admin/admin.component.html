@@ -2,155 +2,38 @@
   <nz-sider>
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="'/home'">
-          <i nz-icon nzType="home" nzTheme="outline"></i>
-          <span>Home</span>
-        </a>
-      </li>
-      <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/dashboard/analysis'">
-              <span>分析页</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/dashboard/monitor'">
-              <span>监控页</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/dashboard/workplace'">
-              <span>工作台</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="表单页" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/form/basic-form'">
-              <span>基本表单</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/form/step-form'">
-              <span>分步表单</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/form/advanced-form'">
-              <span>高级表单</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="列表页" nzIcon="table">
-        <ul>
-          <li nz-submenu nzTitle="搜索列表">
-            <ul>
-              <li nz-menu-item nzMatchRouter>
-                <a [routerLink]="'/list/search/articles'">
-                  <span>搜索列表（文章）</span>
+      <ng-container *ngFor="let menu of menuList">
+        <li *ngIf="!menu.children" nz-menu-item nzMatchRouter>
+          <a [routerLink]="menu.link">
+            <i nz-icon [nzType]="menu.icon" nzTheme="outline"></i>
+            <span>{{menu.title}}</span>
+          </a>
+        </li>
+        <li *ngIf="menu.children" nz-submenu [nzTitle]="menu.title" [nzIcon]="menu.icon" routerLinkActive
+          #rla="routerLinkActive" [nzOpen]="rla.isActive">
+          <ul>
+            <ng-container *ngFor="let childMenu of menu.children">
+              <li *ngIf="!childMenu.children" nz-menu-item nzMatchRouter>
+                <a [routerLink]="childMenu.link">
+                  <span>{{childMenu.title}}</span>
                 </a>
               </li>
-              <li nz-menu-item nzMatchRouter>
-                <a [routerLink]="'/list/search/projects'">
-                  <span>搜索列表（项目）</span>
-                </a>
+              <li *ngIf="childMenu.children" nz-submenu [nzTitle]="childMenu.title" routerLinkActive
+                #rlaG="routerLinkActive" [nzOpen]="rlaG.isActive">
+                <ul>
+                  <ng-container *ngFor="let grandson of childMenu.children">
+                    <li nz-menu-item nzMatchRouter>
+                      <a [routerLink]="grandson.link">
+                        <span>{{grandson.title}}</span>
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
               </li>
-              <li nz-menu-item nzMatchRouter>
-                <a [routerLink]="'/list/search/applications'">
-                  <span>搜索列表（应用）</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/list/table-list'">
-              <span>查询表格</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/list/basic-list'">
-              <span>标准列表</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/list/card-list'">
-              <span>卡片列表</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="详情页" nzIcon="profile">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/profile/basic'">
-              <span>基础详情页</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/profile/advanced'">
-              <span>高级详情页</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="结果页" nzIcon="check-circle">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/result/success'">
-              <span>成功页</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/result/fail'">
-              <span>失败页</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="异常页" nzIcon="warning">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/exception/403'">
-              <span>403</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/exception/404'">
-              <span>404</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/exception/500'">
-              <span>500</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="个人页" nzIcon="user">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/account/center'">
-              <span>个人中心</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="'/account/settings'">
-              <span>个人设置</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="'/changelog'">
-          <i nz-icon nzType="tag" nzTheme="outline"></i>
-          <span>更新日志</span>
-        </a>
-      </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
     </ul>
   </nz-sider>
   <nz-layout class="right-layout">

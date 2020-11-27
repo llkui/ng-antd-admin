@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SearchService } from './search.service';
+
 @Component({
     selector: 'app-list-search-applications',
     templateUrl: './applications.component.html',
@@ -16,7 +18,12 @@ export class SearchApplicationsComponent implements OnInit {
     expanded = false;
     applicationList = [];
 
-    constructor() { }
+    constructor(
+        private searchS: SearchService
+    ) {
+        // 通知search组件，路由切换
+        this.searchS.changeSearchType('applications');
+    }
 
     ngOnInit() {
         this.typeList = [

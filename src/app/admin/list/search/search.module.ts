@@ -18,6 +18,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
+import { SearchService } from './search.service';
+
 import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from './search.component';
@@ -57,6 +59,9 @@ import { SearchApplicationsComponent } from './applications.component';
         NzListModule,
         NzDropDownModule,
         SearchRoutingModule
+    ],
+    providers: [
+        SearchService
     ]
 })
 

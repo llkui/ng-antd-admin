@@ -13,6 +13,14 @@ nz-sider {
   height: 100%;
   position: fixed;
   left: 0;
+
+  // 火狐隐藏侧边栏滚动条
+  scrollbar-width: none;
+
+  // 隐藏侧边栏滚动条
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .right-layout {

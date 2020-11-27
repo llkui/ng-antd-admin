@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SearchService } from './search.service';
+
 @Component({
     selector: 'app-list-search-articles',
     templateUrl: './articles.component.html',
@@ -76,7 +78,12 @@ export class SearchArticlesComponent implements OnInit {
         }
     ];
 
-    constructor() { }
+    constructor(
+        private searchS: SearchService
+    ) {
+        // 通知search组件，路由切换
+        this.searchS.changeSearchType('article');
+    }
 
     ngOnInit() {
         this.typeList = [
