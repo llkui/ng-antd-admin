@@ -29,7 +29,70 @@ nz-sider {
 
 nz-header {
   background: #fff;
-  padding: 0;
+  padding: 0 16px;
+}
+
+.ant-layout-header {
+  height: 48px;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  display: flex;
+}
+
+.header-right {
+  display: flex;
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all .3s;
+
+  i {
+    vertical-align: middle;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, .025);
+  }
+
+  &.header-search:hover {
+    background: inherit;
+  }
+}
+
+.search-input {
+  width: 0;
+  margin-left: 0;
+  transition: width .3s, margin-left .3s;
+
+  &.show {
+    width: 210px;
+    margin-left: 12px;
+  }
+
+  .ant-input {
+    border-radius: 0;
+    padding: 4px 0;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.header-bell {
+  position: relative;
+
+  .ant-badge {
+    position: absolute;
+    top: 0px;
+    left: 17px;
+  }
 }
 
 nz-content {

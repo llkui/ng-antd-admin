@@ -37,7 +37,173 @@
     </ul>
   </nz-sider>
   <nz-layout class="right-layout">
-    <nz-header></nz-header>
+    <nz-header>
+      <div style="flex: 1 1 0%;"></div>
+      <div class="header-right">
+        <div class="header-action header-search">
+          <i nz-icon nzType="search" nzTheme="outline" (click)="search()"></i>
+          <div class="search-input" [class.show]="showSearch">
+            <!-- <div class="search-input show"> -->
+            <input placeholder="站内搜索" nz-input [ngModel]="inputValue" [nzAutocomplete]="auto" (blur)="inputBlur()" />
+            <nz-autocomplete [nzDataSource]="searchOptions" nzBackfill #auto></nz-autocomplete>
+          </div>
+        </div>
+        <div class="header-action" nz-tooltip nzTooltipTitle="使用文档" nzTooltipPlacement="bottom">
+          <i nz-icon nzType="question-circle" nzTheme="outline"></i>
+        </div>
+        <div class="header-action header-bell" nz-dropdown [nzDropdownMenu]="menuBell" [nzTrigger]="'click'"
+          [nzPlacement]="'bottomRight'" [nzOverlayClassName]="'dropdownBell'">
+          <i nz-icon nzType="bell" nzTheme="outline"></i>
+          <nz-badge [nzCount]="bellInfo.total"></nz-badge>
+          <nz-dropdown-menu #menuBell="nzDropdownMenu">
+            <div class="bell-container">
+              <nz-tabset [nzSelectedIndex]="0">
+                <nz-tab [nzTitle]="'通知' + (bellInfo.notice ? '(' + bellInfo.notice + ')' : '')">
+                  <nz-list nzItemLayout="horizontal">
+                    <nz-list-item *ngFor="let item of noticeList" [class.read]="item.read" (click)="read(item)">
+                      <nz-list-item-meta>
+                        <nz-list-item-meta-avatar>
+                          <ng-container [ngSwitch]="item.type">
+                            <nz-avatar *ngSwitchCase="1" nzIcon="mail"
+                              nzSrc="https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png">
+                            </nz-avatar>
+                            <nz-avatar *ngSwitchCase="2" nzIcon="mail"
+                              nzSrc="https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png">
+                            </nz-avatar>
+                            <nz-avatar *ngSwitchCase="3" nzIcon="mail"
+                              nzSrc="https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png">
+                            </nz-avatar>
+                            <nz-avatar *ngSwitchCase="4" nzIcon="mail"
+                              nzSrc="https://gw.alipayobjects.com/zos/rmsportal/GvqBnKhFgObvnSGkDsje.png">
+                            </nz-avatar>
+                            <nz-avatar *ngSwitchDefault nzIcon="mail"
+                              nzSrc="https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png">
+                            </nz-avatar>
+                          </ng-container>
+                        </nz-list-item-meta-avatar>
+                        <nz-list-item-meta-title>
+                          {{item.title}}
+                        </nz-list-item-meta-title>
+                        <nz-list-item-meta-description>
+                          {{item.time}}
+                        </nz-list-item-meta-description>
+                      </nz-list-item-meta>
+                    </nz-list-item>
+                    <nz-list-empty *ngIf="noticeList.length === 0" [nzNoResult]="noNoticeTpl"></nz-list-empty>
+                  </nz-list>
+                  <div class="list-bottomBar" *ngIf="noticeList.length > 0">
+                    <div (click)="readAll('notice')">清空通知</div>
+                    <div (click)="readMore('notice')">查看更多</div>
+                  </div>
+                </nz-tab>
+                <nz-tab [nzTitle]="'消息' + (bellInfo.message ? '(' + bellInfo.message + ')' : '')">
+                  <nz-list nzItemLayout="horizontal">
+                    <nz-list-item *ngFor="let item of messageList" [class.read]="item.read" (click)="read(item)">
+                      <nz-list-item-meta>
+                        <nz-list-item-meta-avatar>
+                          <nz-avatar nzIcon="user" [nzSrc]="item.avatar">
+                          </nz-avatar>
+                        </nz-list-item-meta-avatar>
+                        <nz-list-item-meta-title>
+                          {{item.title}}
+                        </nz-list-item-meta-title>
+                        <nz-list-item-meta-description>
+                          <div>{{item.desc}}</div>
+                          <div>{{item.time}}</div>
+                        </nz-list-item-meta-description>
+                      </nz-list-item-meta>
+                    </nz-list-item>
+                    <nz-list-empty *ngIf="messageList.length === 0" [nzNoResult]="noMessageTpl"></nz-list-empty>
+                  </nz-list>
+                  <div class="list-bottomBar" *ngIf="messageList.length > 0">
+                    <div (click)="readAll('message')">清空消息</div>
+                    <div (click)="readMore('message')">查看更多</div>
+                  </div>
+                </nz-tab>
+                <nz-tab [nzTitle]="'待办' + (bellInfo.task ? '(' + bellInfo.task + ')' : '')">
+                  <nz-list nzItemLayout="horizontal">
+                    <nz-list-item *ngFor="let item of taskList" [class.read]="item.read" (click)="read(item)">
+                      <nz-list-item-meta>
+                        <nz-list-item-meta-title>
+                          <div class="flex">
+                            <div class="flex-1">{{item.title}}</div>
+                            <ng-container [ngSwitch]="item.type">
+                              <nz-tag *ngSwitchCase="1">未开始</nz-tag>
+                              <nz-tag *ngSwitchCase="2" [nzColor]="'red'">马上到期</nz-tag>
+                              <nz-tag *ngSwitchCase="3" [nzColor]="'gold'">已耗时 8 天</nz-tag>
+                              <nz-tag *ngSwitchCase="4" [nzColor]="'blue'">进行中</nz-tag>
+                            </ng-container>
+                          </div>
+                        </nz-list-item-meta-title>
+                        <nz-list-item-meta-description>
+                          {{item.desc}}
+                        </nz-list-item-meta-description>
+                      </nz-list-item-meta>
+                    </nz-list-item>
+                    <nz-list-empty *ngIf="taskList.length === 0" [nzNoResult]="noTaskTpl"></nz-list-empty>
+                  </nz-list>
+                  <div class="list-bottomBar" *ngIf="taskList.length > 0">
+                    <div (click)="readAll('task')">清空待办</div>
+                    <div (click)="readMore('task')">查看更多</div>
+                  </div>
+                </nz-tab>
+              </nz-tabset>
+            </div>
+          </nz-dropdown-menu>
+        </div>
+        <ng-template #noNoticeTpl>
+          <ng-container *ngTemplateOutlet="noResultTpl; context: {type: '你已查看所有通知'}"></ng-container>
+        </ng-template>
+        <ng-template #noMessageTpl>
+          <ng-container *ngTemplateOutlet="noResultTpl; context: {type: '你已查看所有消息'}"></ng-container>
+        </ng-template>
+        <ng-template #noTaskTpl>
+          <ng-container *ngTemplateOutlet="noResultTpl; context: {type: '你已查看所有待办'}"></ng-container>
+        </ng-template>
+        <ng-template #noResultTpl let-type="type">
+          <nz-empty [nzNotFoundImage]="'https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg'"
+            [nzNotFoundContent]="type"></nz-empty>
+        </ng-template>
+        <div class="header-action" nz-dropdown [nzDropdownMenu]="menuUser">
+          <nz-avatar nzIcon="user" [nzSize]="24"
+            nzSrc="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png">
+          </nz-avatar>
+          <span class="pl5">Serati Ma</span>
+          <nz-dropdown-menu #menuUser="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="goUrl('/account/center')">
+                <i nz-icon nzType="user" nzTheme="outline"></i>
+                <span>个人中心</span>
+              </li>
+              <li nz-menu-item (click)="goUrl('/account/settings')">
+                <i nz-icon nzType="setting" nzTheme="outline"></i>
+                <span>个人设置</span>
+              </li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item>
+                <i nz-icon nzType="logout" nzTheme="outline"></i>
+                <span>退出登录</span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+        <div class="header-action" nz-dropdown [nzDropdownMenu]="menuLanguage" [nzPlacement]="'bottomRight'">
+          <i class="anticon" title="语言">
+            <svg viewBox="0 0 24 24" focusable="false" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z "
+                class="css-c4d79v"></path>
+            </svg>
+          </i>
+          <nz-dropdown-menu #menuLanguage="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>简体中文</li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
     <nz-content>
       <div class="orna-circle" style="left: 40%;"></div>
       <router-outlet></router-outlet>
