@@ -180,7 +180,7 @@
                 <span>个人设置</span>
               </li>
               <li nz-menu-divider></li>
-              <li nz-menu-item>
+              <li nz-menu-item (click)="logout()">
                 <i nz-icon nzType="logout" nzTheme="outline"></i>
                 <span>退出登录</span>
               </li>
@@ -208,6 +208,10 @@
       <div class="orna-circle" style="left: 40%;"></div>
       <router-outlet></router-outlet>
     </nz-content>
-    <nz-footer>sky-admin ©2020 Implement By llkui</nz-footer>
+    <nz-footer>
+      sky-admin
+      <i nz-icon nzType="copyright" nzTheme="outline"></i>
+      2020 Implement By llkui
+    </nz-footer>
   </nz-layout>
 </nz-layout>

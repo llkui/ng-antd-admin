@@ -235,6 +235,10 @@ export class AdminComponent implements OnInit {
         this.router.navigate([url]);
     }
 
+    logout() {
+        this.router.navigate(['/user/login']);
+    }
+
     read(item) {
         item.read = true;
         this.getBellInfo();
