@@ -1,6 +1,9 @@
 <nz-layout class="layout">
   <nz-sider>
-    <div class="logo"></div>
+    <div class="logo">
+      <img src="./assets/images/logo.svg" alt="">
+      <h1>Sky Admin</h1>
+    </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <ng-container *ngFor="let menu of menuList">
         <li *ngIf="!menu.children" nz-menu-item nzMatchRouter>

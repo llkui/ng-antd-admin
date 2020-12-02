@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="lang">
+    <i class="anticon" title="语言" nz-dropdown [nzDropdownMenu]="menuLanguage" [nzPlacement]="'bottomRight'">
+      <svg viewBox="0 0 24 24" focusable="false" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z "
+          class="css-c4d79v"></path>
+      </svg>
+    </i>
+    <nz-dropdown-menu #menuLanguage="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>简体中文</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="content">
+    <div class="top">
+      <div class="header">
+        <img src="./assets/images/logo.svg" alt="" class="logo">
+        <span class="title">Sky Admin</span>
+      </div>
+      <div class="desc">Ng Zorro Antd 实现的后台管理系统</div>
+    </div>
+    <div class="main">
+      <h3>注册</h3>
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-alert *ngIf="loginError" nzType="error" nzMessage="账户或密码错误（admin/sky.admin）" nzShowIcon
+          style="margin-bottom: 24px;">
+        </nz-alert>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="emailError">
+            <input nz-input [nzSize]="'large'" formControlName="email" placeholder="邮箱" />
+          </nz-form-control>
+          <ng-template #emailError let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请输入邮箱地址！
+            </ng-container>
+            <ng-container *ngIf="control.hasError('email')">
+              邮箱地址格式错误！
+            </ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="passwordError">
+            <input type="password" nz-input [nzSize]="'large'" formControlName="password" placeholder="至少6位密码，区分大小写"
+              (input)="changePassword($event)" nz-popover [nzPopoverTrigger]="null"
+              [nzPopoverVisible]="passwordInfo.hasData" [nzPopoverContent]="passwordTpl" [nzPopoverPlacement]="'right'"
+              [nzPopoverOverlayClassName]="'register-popover'" />
+          </nz-form-control>
+          <ng-template #passwordTpl>
+            <div class="password-content">
+              <ng-container [ngSwitch]="passwordInfo.type">
+                <div *ngSwitchCase="1" class="error">强度：太短</div>
+                <div *ngSwitchCase="2" class="warn">强度：中</div>
+                <div *ngSwitchCase="3" class="success">强度：强</div>
+              </ng-container>
+              <nz-progress [nzPercent]="passwordInfo.percent" [nzShowInfo]="false" [nzStrokeColor]="passwordInfo.color">
+              </nz-progress>
+              <div class="mt10">请至少输入 6 个字符。请不要使用容易被猜到的密码。</div>
+            </div>
+          </ng-template>
+          <ng-template #passwordError let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请输入密码！
+            </ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="checkPasswordError">
+            <input type="password" nz-input [nzSize]="'large'" formControlName="checkPassword" placeholder="确认密码" />
+          </nz-form-control>
+          <ng-template #checkPasswordError let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请确认密码！
+            </ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">
+              两次输入的密码不匹配!
+            </ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item style="margin-bottom: 0;">
+          <nz-form-control>
+            <nz-input-group nzCompact [nzSize]="'large'">
+              <nz-select formControlName="type" [nzSize]="'large'" style="width: 100px;">
+                <nz-option [nzLabel]="'+86'" [nzValue]="'86'"></nz-option>
+                <nz-option [nzLabel]="'+87'" [nzValue]="'87'"></nz-option>
+              </nz-select>
+              <nz-form-item style="width: calc(100% - 100px);">
+                <nz-form-control [nzErrorTip]="mobileError">
+                  <input nz-input formControlName="mobile" placeholder="手机号" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-input-group>
+          </nz-form-control>
+          <ng-template #mobileError let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请输入手机号！
+            </ng-container>
+            <ng-container *ngIf="control.hasError('matchMobile')">
+              手机号格式错误！
+            </ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="请输入验证码！">
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzSpan="16">
+                <input nz-input [nzSize]="'large'" formControlName="mail" placeholder="验证码" />
+              </div>
+              <div nz-col nzSpan="8">
+                <button type="button" nz-button [nzSize]="'large'" class="w100">获取验证码</button>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <div nz-row>
+              <div nz-col [nzSpan]="12">
+                <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzLoading]="isSpinning" nzBlock>注册</button>
+              </div>
+              <div nz-col [nzSpan]="12" class="text-right">
+                <a (click)="goLogin()" nz-button nzType="link" [nzSize]="'large'">使用已有账户登录</a>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="links">
+      <a title="Sky Admin" target="_blank" href="https://llkui.github.io/sky-admin">Sky Admin</a>
+      <a title="github" target="_blank" href="https://github.com/llkui/sky-admin">
+        <i nz-icon nzType="github" nzTheme="outline"></i>
+      </a>
+      <a title="Ng Zorro Antd" target="_blank" href="https://ng.ant.design/">Ng Zorro Antd</a>
+    </div>
+    <div class="copyright">
+      sky-admin
+      <i nz-icon nzType="copyright" nzTheme="outline"></i>
+      2020 Implement By llkui
+    </div>
+  </div>
+</div>

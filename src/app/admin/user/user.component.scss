@@ -1,12 +1,18 @@
 .container {
-  background: url('./../../../assets/images/TVYTbAXWheQpRcWDaDMu.svg') no-repeat;
-  background-position: center 110px;
-  background-size: 100%;
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: auto;
   background: #f0f2f5;
+}
+
+@media (min-width: 768px) {
+  .container {
+    background-image: url('./../../../assets/images/TVYTbAXWheQpRcWDaDMu.svg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
 }
 
 .lang {
@@ -54,11 +60,28 @@
   .main {
     width: 368px;
     margin: 0 auto;
+
+    h3 {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+  }
+
+  .result-main {
+    width: 800px;
+    min-height: 400px;
+    margin: auto;
+    padding: 80px;
   }
 
   .login {
     width: 100%;
     margin-top: 24px;
+  }
+
+  .ant-btn-link {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .login-other {

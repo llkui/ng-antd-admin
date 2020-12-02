@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="lang">
+    <i class="anticon" title="语言" nz-dropdown [nzDropdownMenu]="menuLanguage" [nzPlacement]="'bottomRight'">
+      <svg viewBox="0 0 24 24" focusable="false" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z "
+          class="css-c4d79v"></path>
+      </svg>
+    </i>
+    <nz-dropdown-menu #menuLanguage="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>简体中文</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="content">
+    <div class="top">
+      <div class="header">
+        <img src="./assets/images/logo.svg" alt="" class="logo">
+        <span class="title">Sky Admin</span>
+      </div>
+      <div class="desc">Ng Zorro Antd 实现的后台管理系统</div>
+    </div>
+    <div class="result-main">
+      <nz-result nzStatus="success" [nzTitle]="'你的账户：' + email + ' 注册成功'"
+        nzSubTitle="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。">
+        <div nz-result-extra>
+          <button nz-button nzType="primary" nzSize="large">查看邮箱</button>
+          <button nz-button nzSize="large" (click)="backHome()">返回首页</button>
+        </div>
+      </nz-result>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="links">
+      <a title="Sky Admin" target="_blank" href="https://llkui.github.io/sky-admin">Sky Admin</a>
+      <a title="github" target="_blank" href="https://github.com/llkui/sky-admin">
+        <i nz-icon nzType="github" nzTheme="outline"></i>
+      </a>
+      <a title="Ng Zorro Antd" target="_blank" href="https://ng.ant.design/">Ng Zorro Antd</a>
+    </div>
+    <div class="copyright">
+      sky-admin
+      <i nz-icon nzType="copyright" nzTheme="outline"></i>
+      2020 Implement By llkui
+    </div>
+  </div>
+</div>

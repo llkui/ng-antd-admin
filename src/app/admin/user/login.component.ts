@@ -112,4 +112,8 @@ export class UserLoginComponent implements OnInit {
             }
         }, 1000);
     }
+
+    goRegister() {
+        this.router.navigate(['/user/register']);
+    }
 }

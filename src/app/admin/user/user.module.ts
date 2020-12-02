@@ -10,17 +10,27 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 import { UserRoutingModule } from './user-routing.module';
 
 import { UserLoginComponent } from './login.component';
+import { UserRegisterComponent } from './register.component';
+import { UserRegisterResultComponent } from './register-result.component';
 
 @NgModule({
     declarations: [
-        UserLoginComponent
+        UserLoginComponent,
+        UserRegisterComponent,
+        UserRegisterResultComponent
     ],
     exports: [
-        UserLoginComponent
+        UserLoginComponent,
+        UserRegisterComponent,
+        UserRegisterResultComponent
     ],
     imports: [
         CommonModule,
@@ -34,6 +44,10 @@ import { UserLoginComponent } from './login.component';
         NzCheckboxModule,
         NzIconModule,
         NzAlertModule,
+        NzSelectModule,
+        NzPopoverModule,
+        NzProgressModule,
+        NzResultModule,
         UserRoutingModule
     ]
 })

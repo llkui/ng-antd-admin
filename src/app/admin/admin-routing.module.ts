@@ -59,6 +59,7 @@ const adminRoutes: Routes = [
     },
     {
         path: 'user',
+        canActivateChild: [AuthGuard],
         loadChildren: () => import('./user/user.module').then(m => m.UserModule)
     }
 ];

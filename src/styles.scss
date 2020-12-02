@@ -71,6 +71,10 @@
   }
 }
 
+.mt0 {
+  margin-top: 0;
+}
+
 .mt5 {
   margin-top: 5px;
 }
@@ -301,5 +305,24 @@
         border-left: 1px solid #f0f0f0;
       }
     }
+  }
+}
+
+// register
+.register-popover {
+  .password-content {
+    width: 200px;
+  }
+
+  .error {
+    color: #ff4d4f;
+  }
+
+  .warn {
+    color: #faad14;
+  }
+
+  .success {
+    color: #52c41a;
   }
 }
