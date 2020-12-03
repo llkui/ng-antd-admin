@@ -24,6 +24,21 @@ export class AdminComponent implements OnInit {
         message: 3,
         task: 4,
     };
+    visible = false;
+    contentList = [
+        { type: 'header', name: '顶栏' },
+        { type: 'footer', name: '页脚' },
+        { type: 'menu', name: '菜单' },
+        { type: 'menuHeader', name: '菜单头' },
+    ];
+    drawerInfo = {
+        content: {
+            header: true,
+            footer: true,
+            menu: true,
+            menuHeader: true
+        }
+    };
 
     constructor(
         private platformLocation: PlatformLocation,
@@ -269,5 +284,21 @@ export class AdminComponent implements OnInit {
 
     readMore(type) {
         this.message.success('Click on view more');
+    }
+
+    close() {
+        this.visible = false;
+    }
+
+    changeDrawer() {
+        this.visible = !this.visible;
+    }
+
+    changeContent(type) {
+        if (type === 'menu') {
+            const e = document.createEvent('Event');
+            e.initEvent('resize', true, true);
+            window.dispatchEvent(e);
+        }
     }
 }

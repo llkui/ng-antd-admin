@@ -1,6 +1,6 @@
 <nz-layout class="layout">
-  <nz-sider>
-    <div class="logo">
+  <nz-sider *ngIf="drawerInfo.content.menu">
+    <div class="logo" *ngIf="drawerInfo.content.menuHeader">
       <img src="./assets/images/logo.svg" alt="">
       <h1>Sky Admin</h1>
     </div>
@@ -39,8 +39,8 @@
       </ng-container>
     </ul>
   </nz-sider>
-  <nz-layout class="right-layout">
-    <nz-header>
+  <nz-layout [class.right-layout]="drawerInfo.content.menu">
+    <nz-header *ngIf="drawerInfo.content.header">
       <div style="flex: 1 1 0%;"></div>
       <div class="header-right">
         <div class="header-action header-search">
@@ -211,10 +211,40 @@
       <div class="orna-circle" style="left: 40%;"></div>
       <router-outlet></router-outlet>
     </nz-content>
-    <nz-footer>
+    <nz-footer *ngIf="drawerInfo.content.footer">
       sky-admin
       <i nz-icon nzType="copyright" nzTheme="outline"></i>
       2020 Implement By llkui
     </nz-footer>
   </nz-layout>
+  <div class="drawer-handle" (click)="changeDrawer()" [class.open]="visible">
+    <ng-container *ngIf="!visible; then settingIcon else closeIcon"></ng-container>
+    <ng-template #settingIcon>
+      <i nz-icon nzType="setting" nzTheme="outline"></i>
+    </ng-template>
+    <ng-template #closeIcon>
+      <i nz-icon nzType="close" nzTheme="outline"></i>
+    </ng-template>
+  </div>
 </nz-layout>
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" [nzWidth]="300" nzPlacement="right" [nzContent]="drawerContent"
+  [nzWrapClassName]="'nz-drawer-handle'" (nzOnClose)="close()">
+  <ng-template #drawerContent>
+    <div>
+      <div>
+        <h3>内容区域</h3>
+        <ul nz-list [nzSplit]="false">
+          <li nz-list-item nzNoFlex *ngFor="let contentItem of contentList">
+            <ul nz-list-item-actions>
+              <nz-list-item-action>
+                <nz-switch [(ngModel)]="drawerInfo.content[contentItem.type]" nzSize="small"
+                  (ngModelChange)="changeContent(contentItem.type)"></nz-switch>
+              </nz-list-item-action>
+            </ul>
+            {{contentItem.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</nz-drawer>

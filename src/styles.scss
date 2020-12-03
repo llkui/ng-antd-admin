@@ -171,6 +171,16 @@
   background-color: #ffffff;
 }
 
+// drawer-handle
+.nz-drawer-handle {
+  h3 {
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, .85);
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
 .form-advanced-form-style-errorPopover {
   .ant-popover-inner-content {
     min-width: 256px;

@@ -18,6 +18,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 
 import { AuthGuard } from './../service/auth-guard.service';
 
@@ -57,6 +59,8 @@ import { ChangelogComponent } from './changelog/changelog.component';
         NzEmptyModule,
         NzMessageModule,
         NzTagModule,
+        NzDrawerModule,
+        NzSwitchModule,
         AdminRoutingModule
     ],
     providers: [
