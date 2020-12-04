@@ -1,10 +1,10 @@
 <nz-layout class="layout">
-  <nz-sider *ngIf="drawerInfo.content.menu">
+  <nz-sider *ngIf="drawerInfo.content.menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'">
     <div class="logo" *ngIf="drawerInfo.content.menuHeader">
       <img src="./assets/images/logo.svg" alt="">
       <h1>Sky Admin</h1>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
+    <ul nz-menu [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'" nzMode="inline">
       <ng-container *ngFor="let menu of menuList">
         <li *ngIf="!menu.children" nz-menu-item nzMatchRouter>
           <a [routerLink]="menu.link">
@@ -40,7 +40,7 @@
     </ul>
   </nz-sider>
   <nz-layout [class.right-layout]="drawerInfo.content.menu">
-    <nz-header *ngIf="drawerInfo.content.header">
+    <nz-header *ngIf="drawerInfo.content.header" [class.dark]="siteStyle == 'dark'">
       <div style="flex: 1 1 0%;"></div>
       <div class="header-right">
         <div class="header-action header-search">
@@ -231,7 +231,23 @@
   [nzWrapClassName]="'nz-drawer-handle'" (nzOnClose)="close()">
   <ng-template #drawerContent>
     <div>
-      <div>
+      <div style="margin-bottom: 24px;">
+        <h3>整体风格设置</h3>
+        <div class="checkbox">
+          <div nz-tooltip nzTooltipTitle="亮色菜单风格" class="checkbox-item" (click)="changeStyle('menu')">
+            <i *ngIf="siteStyle == 'menu'" nz-icon nzType="check" nzTheme="outline"></i>
+          </div>
+          <div nz-tooltip nzTooltipTitle="暗色菜单风格" class="checkbox-item checkbox-item-menu-dark"
+            (click)="changeStyle('menuDark')">
+            <i *ngIf="siteStyle == 'menuDark'" nz-icon nzType="check" nzTheme="outline"></i>
+          </div>
+          <div nz-tooltip nzTooltipTitle="暗黑风格" class="checkbox-item" (click)="changeStyle('dark')">
+            <i *ngIf="siteStyle == 'dark'" nz-icon nzType="check" nzTheme="outline"></i>
+          </div>
+        </div>
+      </div>
+      <nz-divider></nz-divider>
+      <div style="margin-bottom: 24px;">
         <h3>内容区域</h3>
         <ul nz-list [nzSplit]="false">
           <li nz-list-item nzNoFlex *ngFor="let contentItem of contentList">

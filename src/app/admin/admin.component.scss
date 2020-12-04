@@ -23,6 +23,18 @@
   }
 }
 
+.ant-layout-sider-dark {
+  .logo h1 {
+    color: #fff;
+  }
+}
+
+.ant-layout-sider-light {
+  .logo h1 {
+    color: #1890ff;
+  }
+}
+
 .layout {
   min-height: 100vh;
 }
@@ -49,6 +61,10 @@ nz-sider {
 nz-header {
   background: #fff;
   padding: 0 16px;
+
+  &.dark {
+    background: #000;
+  }
 }
 
 .ant-layout-header {

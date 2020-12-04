@@ -20,6 +20,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import { AuthGuard } from './../service/auth-guard.service';
 
@@ -61,6 +62,7 @@ import { ChangelogComponent } from './changelog/changelog.component';
         NzTagModule,
         NzDrawerModule,
         NzSwitchModule,
+        NzDividerModule,
         AdminRoutingModule
     ],
     providers: [

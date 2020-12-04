@@ -39,6 +39,7 @@ export class AdminComponent implements OnInit {
             menuHeader: true
         }
     };
+    siteStyle = 'menuDark';
 
     constructor(
         private platformLocation: PlatformLocation,
@@ -47,6 +48,12 @@ export class AdminComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        const siteStyle = localStorage.getItem('site-style');
+        if (siteStyle) {
+            this.siteStyle = siteStyle;
+        }
+        this.changeStyle(this.siteStyle);
+
         this.menuList = [
             {
                 title: 'Home',
@@ -299,6 +306,32 @@ export class AdminComponent implements OnInit {
             const e = document.createEvent('Event');
             e.initEvent('resize', true, true);
             window.dispatchEvent(e);
+        }
+    }
+
+    changeStyle(value) {
+        this.siteStyle = value;
+        localStorage.setItem('site-style', this.siteStyle);
+        if (value === 'dark') {
+            this.changeTheme('dark');
+        } else {
+            this.changeTheme('default');
+        }
+    }
+
+    changeTheme(theme: 'default' | 'dark'): void {
+        if (theme === 'dark') {
+            const style = document.createElement('link');
+            style.type = 'text/css';
+            style.rel = 'stylesheet';
+            style.id = 'dark-theme';
+            style.href = 'assets/themes/style.dark.css';
+            document.body.appendChild(style);
+        } else {
+            const dom = document.getElementById('dark-theme');
+            if (dom) {
+                dom.remove();
+            }
         }
     }
 }
