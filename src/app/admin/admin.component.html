@@ -205,6 +205,15 @@
             </ul>
           </nz-dropdown-menu>
         </div>
+        <div class="header-action" nz-dropdown [nzDropdownMenu]="menuVersion" [nzPlacement]="'bottomRight'">
+          <i nz-icon nzType="branches" nzTheme="outline"></i>
+          <span>v10</span>
+          <nz-dropdown-menu #menuVersion="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item (click)="changeVersion('9')">v9</li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
       </div>
     </nz-header>
     <nz-content>

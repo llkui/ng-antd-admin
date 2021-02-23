@@ -200,8 +200,13 @@ export class AdminComponent implements OnInit {
                 ]
             },
             {
-                title: '更新日志',
+                title: 'v10 升级指南',
                 icon: 'tag',
+                link: '/migration/v10'
+            },
+            {
+                title: '更新日志',
+                icon: 'tags',
                 link: '/changelog'
             },
         ];
@@ -259,6 +264,10 @@ export class AdminComponent implements OnInit {
 
     logout() {
         this.router.navigate(['/user/login']);
+    }
+
+    changeVersion(version) {
+        window.location.href = 'https://llkui.github.io/ng-antd-admin/version/' + version;
     }
 
     read(item) {

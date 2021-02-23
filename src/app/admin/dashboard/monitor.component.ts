@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { registerShape, Chart, Util } from '@antv/g2';
+import { registerShape, Chart } from '@antv/g2';
 import DataSet from '@antv/data-set';
 
 @Component({

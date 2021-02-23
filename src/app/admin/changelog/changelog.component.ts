@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-changelog',
@@ -6,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ChangelogComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private router: Router
+    ) { }
 
     ngOnInit() {
 
+    }
+
+    migration(version) {
+        this.router.navigate(['./migration/' + version]);
     }
 }

@@ -1,0 +1,78 @@
+<div class="content-section">
+  <nz-card>
+    <article nz-typography>
+      <h1 nz-typography>v10 升级指南</h1>
+      <p nz-typography>
+        本文档仅作为 ng-antd-admin 升级 <code>angular</code> 10 示例。
+      </p>
+      <h2 nz-typography>开始之前</h2>
+      <p nz-typography>
+        1. 首先确保你 <code>Node.js</code> >= <code>10.13</code>
+      </p>
+      <p nz-typography>
+        2. 创建新的分支，或者使用其他方式备份当前项目
+      </p>
+      <p nz-typography>
+        3. 删除项目下 package-lock.json 文件
+      </p>
+      <h2 nz-typography>升级步骤</h2>
+      <p nz-typography>
+        1. 升级相关依赖
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            前往 <a target="_blank" href="https://update.angular.io/">https://update.angular.io/</a> 将项目升级到 Angular 10
+          </li>
+          <li>
+            如果你有单独使用 <code>@angular/cdk</code> 请执行 <code>ng update @angular/cdk</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        2. 升级 NG-ZORRO
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>ng update ng-zorro-antd</code>
+          </li>
+          <li>
+            如果控制台出现警告消息请按提示修改对应代码
+          </li>
+        </ul>
+      </div>
+      <h2 nz-typography>本项目升级步骤</h2>
+      <p nz-typography>
+        1. 将项目升级到 <code>Angular</code> 10
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>ng update @angular/cli@10 @angular/core@10</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        2. 将 <code>@angular/cdk</code> 升级到 10
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>npm i --save @angular/cdk@10.x</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        3. 将 <code>ng-zorro-antd</code> 升级到 10
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>npm i --save ng-zorro-antd@10.x</code>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </nz-card>
+</div>

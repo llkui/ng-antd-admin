@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
-import { Chart, registerShape, registerComponentController } from '@antv/g2';
-import Slider from '@antv/g2/lib/chart/controller/slider';
+import { Chart, registerShape } from '@antv/g2';
 import { insertCss } from 'insert-css';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, addDays, isToday, getYear, getMonth } from 'date-fns';
 
@@ -480,8 +479,6 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
     }
 
     getStores() {
-        registerComponentController('slider', Slider);
-
         const data = [
             { time: '21:08', type: '客流量', value: 71 },
             { time: '21:08', type: '支付笔数', value: 30 },

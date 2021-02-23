@@ -1,6 +1,6 @@
 {
   "name": "ng-antd-admin",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~10.2.4",
     "@angular/router": "~10.2.4",
     "@antv/data-set": "^0.11.7",
-    "@antv/g2": "^4.0.15",
+    "@antv/g2": "^4.1.12",
     "date-fns": "^2.12.0",
     "insert-css": "^2.0.0",
     "ng-zorro-antd": "^10.2.2",

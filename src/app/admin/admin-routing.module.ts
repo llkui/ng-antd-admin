@@ -54,6 +54,10 @@ const adminRoutes: Routes = [
             {
                 path: 'account',
                 loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
+            },
+            {
+                path: 'migration',
+                loadChildren: () => import('./migration/migration.module').then(m => m.MigrationModule)
             }
         ],
     },
