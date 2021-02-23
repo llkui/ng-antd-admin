@@ -73,7 +73,7 @@ export class UserLoginComponent implements OnInit {
         setTimeout(() => {
             const username = this.validateForm.controls.username.value;
             const password = this.validateForm.controls.password.value;
-            if (['admin', 'user'].indexOf(username) !== -1 && 'sky.admin' === password) {
+            if (['admin', 'user'].indexOf(username) !== -1 && 'ng.antd.admin' === password) {
                 this.router.navigate(['/']);
                 this.message.success('登录成功');
             } else {

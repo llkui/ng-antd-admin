@@ -9,9 +9,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
-        let title = 'sky admin';
+        let title = 'ng antd admin';
         if (route.data.title) {
-            title = route.data.title + ' - sky admin';
+            title = route.data.title + ' - ng antd admin';
         }
         this.title.setTitle(title);
         return true;

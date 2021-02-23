@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('sky-admin app is running!');
+    expect(page.getTitleText()).toEqual('ng-antd-admin app is running!');
   });
 
   afterEach(async () => {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sky-admin": {
+    "ng-antd-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sky-admin",
+            "outputPath": "dist/ng-antd-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sky-admin:build"
+            "browserTarget": "ng-antd-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sky-admin:build:production"
+              "browserTarget": "ng-antd-admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sky-admin:build"
+            "browserTarget": "ng-antd-admin:build"
           }
         },
         "test": {
@@ -120,18 +120,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sky-admin:serve"
+            "devServerTarget": "ng-antd-admin:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sky-admin:serve:production"
+              "devServerTarget": "ng-antd-admin:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "sky-admin",
+  "defaultProject": "ng-antd-admin",
   "cli": {
     "analytics": "c0e70c01-db2d-4659-a7ad-20ea2e9170b3"
   }

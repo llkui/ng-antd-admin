@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class UserRegisterResultComponent implements OnInit {
-    email = 'SkyAdmin@example.com';
+    email = 'NgAntdAdmin@example.com';
 
     constructor(
         private router: Router

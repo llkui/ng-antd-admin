@@ -3,8 +3,8 @@
 
 # 安装
 ```bash
-$ git clone https://github.com/llkui/sky-admin.git sky-admin
-$ cd sky-admin
+$ git clone https://github.com/llkui/ng-antd-admin.git ng-antd-admin
+$ cd ng-antd-admin
 $ npm install
 ```
 

@@ -2,7 +2,7 @@
   <nz-sider *ngIf="drawerInfo.content.menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'">
     <div class="logo" *ngIf="drawerInfo.content.menuHeader">
       <img src="./assets/images/logo.svg" alt="">
-      <h1>Sky Admin</h1>
+      <h1>ng antd admin</h1>
     </div>
     <ul nz-menu [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'" nzMode="inline">
       <ng-container *ngFor="let menu of menuList">
@@ -212,7 +212,7 @@
       <router-outlet></router-outlet>
     </nz-content>
     <nz-footer *ngIf="drawerInfo.content.footer">
-      sky-admin
+      ng-antd-admin
       <i nz-icon nzType="copyright" nzTheme="outline"></i>
       2020 Implement By llkui
     </nz-footer>

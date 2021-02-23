@@ -17,14 +17,14 @@ export class StepFormComponent implements OnInit {
         private fb: FormBuilder
     ) {
         this.validateForm = this.fb.group({
-            payment_account: ['sky-admin', [Validators.required]],
+            payment_account: ['ng-antd-admin', [Validators.required]],
             collection_type: ['alipay', [Validators.required]],
             collection_account: ['test@example.com', [Validators.required, Validators.email]],
             collection_name: ['Alex', [Validators.required]],
             account: ['500', [Validators.required, this.matchNumber]],
         });
         this.validateForm2 = this.fb.group({
-            password: ['sky-admin', [Validators.required]],
+            password: ['ng-antd-admin', [Validators.required]],
         });
     }
 

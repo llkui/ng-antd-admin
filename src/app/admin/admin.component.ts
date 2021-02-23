@@ -321,12 +321,16 @@ export class AdminComponent implements OnInit {
 
     changeTheme(theme: 'default' | 'dark'): void {
         if (theme === 'dark') {
+            const loading = this.message.loading('正在加载主题', { nzDuration: 0 });
             const style = document.createElement('link');
             style.type = 'text/css';
             style.rel = 'stylesheet';
             style.id = 'dark-theme';
             style.href = 'assets/themes/style.dark.css';
             document.body.appendChild(style);
+            setTimeout(() => {
+                this.message.remove(loading.messageId);
+            }, 1500);
         } else {
             const dom = document.getElementById('dark-theme');
             if (dom) {

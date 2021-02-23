@@ -1,5 +1,5 @@
 {
-  "name": "sky-admin",
+  "name": "ng-antd-admin",
   "version": "9.0.0",
   "scripts": {
     "ng": "ng",
