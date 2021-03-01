@@ -22,16 +22,6 @@
   cursor: pointer;
 }
 
-.outside {
-  position: absolute;
-  left: -5000px;
-  width: 100%;
-
-  &.area {
-    width: 300px;
-  }
-}
-
 .salesExtraWrap {
   display: inline-block;
 

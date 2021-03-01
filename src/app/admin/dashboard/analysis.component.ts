@@ -74,21 +74,23 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.getAccess();
-        this.getPay();
-        this.getSales();
-        this.getSaleType(this.saleTypeData);
-        this.getSearchUser();
-        this.getUserSearch();
-        this.getStores();
-
         // 使用autoFit自适应时，首次渲染会超出范围，故主动触发resize函数
         setTimeout(() => {
             this.loading = false;
-            const e = document.createEvent('Event');
-            e.initEvent('resize', true, true);
-            window.dispatchEvent(e);
-        }, 1000);
+
+            setTimeout(() => {
+                this.getAccess();
+                this.getPay();
+                this.getSales();
+                this.getSaleType(this.saleTypeData);
+                this.getSearchUser();
+                this.getUserSearch();
+                this.getStores();
+                const e = document.createEvent('Event');
+                e.initEvent('resize', true, true);
+                window.dispatchEvent(e);
+            }, 0);
+        }, 600);
     }
 
     getAccess() {
