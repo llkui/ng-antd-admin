@@ -93,49 +93,53 @@
     </nz-list>
   </nz-card>
 </div>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="任务添加" [nzWidth]="640" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-  [nzOkText]="'保存'">
-  <form nz-form [formGroup]="validateForm">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="name" nzRequired>任务名称</nz-form-label>
-      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入任务名称'">
-        <input nz-input id="name" formControlName="name" placeholder="请输入">
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="time" nzRequired>开始时间</nz-form-label>
-      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择开始时间'">
-        <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" formControlName="time" [nzPlaceHolder]="'请选择'"
-          class="w100">
-        </nz-date-picker>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="user" nzRequired>任务负责人</nz-form-label>
-      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择任务负责人'">
-        <nz-select formControlName="user" [nzPlaceHolder]="'请选择'">
-          <nz-option nzValue="1" nzLabel="付小小"></nz-option>
-          <nz-option nzValue="2" nzLabel="曲丽丽"></nz-option>
-          <nz-option nzValue="3" nzLabel="林东东"></nz-option>
-          <nz-option nzValue="4" nzLabel="周星星"></nz-option>
-          <nz-option nzValue="5" nzLabel="吴加好"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="desc">产品描述</nz-form-label>
-      <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入至少五个字符的产品描述！'">
-        <textarea nz-input id="desc" rows="3" formControlName="desc" placeholder="请输入至少五个字符"></textarea>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="任务添加" [nzWidth]="640" [nzContent]="contentAdd"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkText]="'保存'">
+  <ng-template #contentAdd>
+    <form nz-form [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzFor="name" nzRequired>任务名称</nz-form-label>
+        <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入任务名称'">
+          <input nz-input id="name" formControlName="name" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzFor="time" nzRequired>开始时间</nz-form-label>
+        <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择开始时间'">
+          <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" formControlName="time" [nzPlaceHolder]="'请选择'"
+            class="w100">
+          </nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzFor="user" nzRequired>任务负责人</nz-form-label>
+        <nz-form-control [nzSpan]="13" [nzErrorTip]="'请选择任务负责人'">
+          <nz-select formControlName="user" [nzPlaceHolder]="'请选择'">
+            <nz-option nzValue="1" nzLabel="付小小"></nz-option>
+            <nz-option nzValue="2" nzLabel="曲丽丽"></nz-option>
+            <nz-option nzValue="3" nzLabel="林东东"></nz-option>
+            <nz-option nzValue="4" nzLabel="周星星"></nz-option>
+            <nz-option nzValue="5" nzLabel="吴加好"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzFor="desc">产品描述</nz-form-label>
+        <nz-form-control [nzSpan]="13" [nzErrorTip]="'请输入至少五个字符的产品描述！'">
+          <textarea nz-input id="desc" rows="3" formControlName="desc" placeholder="请输入至少五个字符"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-template>
 </nz-modal>
 
-<nz-modal [(nzVisible)]="isVisibleResult" [nzTitle]="null" [nzWidth]="640" [nzFooter]="null"
+<nz-modal [(nzVisible)]="isVisibleResult" [nzTitle]="null" [nzWidth]="640" [nzContent]="contentResult" [nzFooter]="null"
   (nzOnCancel)="cancelResult()">
-  <nz-result nzStatus="success" nzTitle="操作成功" nzSubTitle="一系列的信息描述，很短同样也可以带标点。">
-    <div nz-result-extra>
-      <button (click)="okResult()" nz-button nzType="primary">知道了</button>
-    </div>
-  </nz-result>
+  <ng-template #contentResult>
+    <nz-result nzStatus="success" nzTitle="操作成功" nzSubTitle="一系列的信息描述，很短同样也可以带标点。">
+      <div nz-result-extra>
+        <button (click)="okResult()" nz-button nzType="primary">知道了</button>
+      </div>
+    </nz-result>
+  </ng-template>
 </nz-modal>

@@ -200,6 +200,11 @@ export class AdminComponent implements OnInit {
                 ]
             },
             {
+                title: 'v11 升级指南',
+                icon: 'tag',
+                link: '/migration/v11'
+            },
+            {
                 title: 'v10 升级指南',
                 icon: 'tag',
                 link: '/migration/v10'
