@@ -23,6 +23,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import { AuthGuard } from './../service/auth-guard.service';
+import { CommonService } from './../service/common.service';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -66,7 +67,8 @@ import { ChangelogComponent } from './changelog/changelog.component';
         AdminRoutingModule
     ],
     providers: [
-        AuthGuard
+        AuthGuard,
+        CommonService
     ]
 })
 

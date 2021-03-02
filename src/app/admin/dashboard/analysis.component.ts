@@ -4,6 +4,8 @@ import { Chart, registerShape } from '@antv/g2';
 import { insertCss } from 'insert-css';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, addDays, isToday, getYear, getMonth } from 'date-fns';
 
+import { CommonService } from './../../service/common.service';
+
 @Component({
     selector: 'app-dashboard-analysis',
     templateUrl: './analysis.component.html',
@@ -29,15 +31,15 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
     saleTypeData = [];
     saleTypeChart = null;
     StoresList = [];
-    @ViewChild('access', { static: false }) accessDom: ElementRef;
-    @ViewChild('pay', { static: false }) payDom: ElementRef;
-    @ViewChild('sales', { static: false }) salesDom: ElementRef;
-    @ViewChild('searchUser', { static: false }) searchUserDom: ElementRef;
-    @ViewChild('userSearch', { static: false }) userSearchDom: ElementRef;
-    @ViewChild('saleType', { static: false }) saleTypeDom: ElementRef;
-    @ViewChild('stores', { static: false }) storesDom: ElementRef;
+    accessChart = null;
 
-    consturctor() { }
+    constructor(
+        private commonS: CommonService
+    ) {
+        this.commonS.layout.subscribe(() => {
+            this.eventResize();
+        });
+    }
 
     ngOnInit() {
         for (let i = 1; i < 51; i++) {
@@ -86,11 +88,16 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
                 this.getSearchUser();
                 this.getUserSearch();
                 this.getStores();
-                const e = document.createEvent('Event');
-                e.initEvent('resize', true, true);
-                window.dispatchEvent(e);
+
+                this.eventResize();
             }, 0);
         }, 600);
+    }
+
+    eventResize() {
+        const e = document.createEvent('Event');
+        e.initEvent('resize', true, true);
+        window.dispatchEvent(e);
     }
 
     getAccess() {
@@ -116,43 +123,42 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
             { day: year + '-' + (month + 1) + '-17', value: 5 },
         ];
 
-        const chart = new Chart({
+        this.accessChart = new Chart({
             container: 'access', // 指定图表容器 ID
-            width: this.accessDom.nativeElement.offsetWidth, // 指定图表宽度
+            autoFit: true,
             height: 32, // 指定图表高度,
-            autoFit: true
         });
 
-        chart.data(data);
-        chart.scale({
+        this.accessChart.data(data);
+        this.accessChart.scale({
             sale: {
                 min: 0,
                 max: 20,
             },
         });
-        chart.tooltip({
+        this.accessChart.tooltip({
             showTitle: false,
         });
-        chart.axis('value', {
+        this.accessChart.axis('value', {
             grid: {
                 line: null
             },
             label: null
         });
-        chart.axis('day', {
+        this.accessChart.axis('day', {
             line: null,
             tickLine: null,
             label: null
         });
-        chart.legend(false);
-        chart
+        this.accessChart.legend(false);
+        this.accessChart
             .area()
             // 光滑
             .shape('smooth')
             .position('day*value');
 
         // Step 4: 渲染图表
-        chart.render();
+        this.accessChart.render();
     }
 
     getPay() {
@@ -180,9 +186,8 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
 
         const chart = new Chart({
             container: 'pay', // 指定图表容器 ID
-            width: this.payDom.nativeElement.offsetWidth, // 指定图表宽度
+            autoFit: true,
             height: 32, // 指定图表高度,
-            autoFit: true
         });
 
         chart.data(data);
@@ -253,9 +258,8 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
         // Step 1: 创建 Chart 对象
         const chart = new Chart({
             container: 'sales', // 指定图表容器 ID
-            width: this.salesDom.nativeElement.offsetWidth, // 指定图表宽度
+            autoFit: true,
             height: 254, // 指定图表高度,
-            autoFit: true
         });
 
         chart.scale('sold', {
@@ -334,7 +338,6 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
             container: 'saleType',
             autoFit: true,
             height: 248,
-            width: this.saleTypeDom.nativeElement.offsetWidth
         });
 
         this.saleTypeChart.data(data);
@@ -381,9 +384,8 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
 
         const chart = new Chart({
             container: 'searchUser', // 指定图表容器 ID
-            width: this.searchUserDom.nativeElement.offsetWidth, // 指定图表宽度
+            autoFit: true,
             height: 32, // 指定图表高度,
-            autoFit: true
         });
 
         chart.data(data);
@@ -438,9 +440,8 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
 
         const chart = new Chart({
             container: 'userSearch', // 指定图表容器 ID
-            width: this.userSearchDom.nativeElement.offsetWidth, // 指定图表宽度
+            autoFit: true,
             height: 32, // 指定图表高度,
-            autoFit: true
         });
 
         chart.data(data);
@@ -528,7 +529,6 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
             container: 'stores',
             autoFit: true,
             height: 500,
-            width: this.storesDom.nativeElement.offsetWidth
         });
 
         chart.data(data);

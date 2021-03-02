@@ -2,93 +2,90 @@
   <div nz-row [nzGutter]="24">
     <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
       <nz-card>
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <div class="meta flex">
-              <span class="flex-1">总销售额</span>
-              <span class="action" nz-tooltip nzTooltipTitle="指标说明">
-                <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-              </span>
-            </div>
-            <div class="total">¥ {{126560 | number}}</div>
-            <div class="mt10">
-              <span>周同比12%</span>
-              <i nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
-              <span>日同比11%</span>
-              <i nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
-            </div>
-            <nz-divider></nz-divider>
-            <span>日销售额</span>
-            <span class="ml10">￥{{12423 | number}}</span>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <div class="meta flex">
+            <span class="flex-1">总销售额</span>
+            <span class="action" nz-tooltip nzTooltipTitle="指标说明">
+              <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+            </span>
           </div>
-        </nz-skeleton>
-      </nz-card>
-    </div>
-    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
-      <nz-card>
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <div class="meta flex">
-              <span class="flex-1">访问量</span>
-              <span class="action" nz-tooltip nzTooltipTitle="指标说明">
-                <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-              </span>
-            </div>
-            <div class="total">{{8846 | number}}</div>
-            <div id="access" #access></div>
-            <nz-divider></nz-divider>
-            <span>日访问量</span>
-            <span class="ml10">{{1234 | number}}</span>
-          </div>
-        </nz-skeleton>
-      </nz-card>
-    </div>
-    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
-      <nz-card>
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <div class="meta flex">
-              <span class="flex-1">支付笔数</span>
-              <span class="action" nz-tooltip nzTooltipTitle="指标说明">
-                <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-              </span>
-            </div>
-            <div class="total">{{6560 | number}}</div>
-            <div id="pay" #pay></div>
-            <nz-divider></nz-divider>
-            <span>转化率</span>
-            <span class="ml10">{{0.6 | percent}}</span>
-          </div>
-        </nz-skeleton>
-      </nz-card>
-    </div>
-    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
-      <nz-card>
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <div class="meta flex">
-              <span class="flex-1">运营活动效果</span>
-              <span class="action" nz-tooltip nzTooltipTitle="指标说明">
-                <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-              </span>
-            </div>
-            <div class="total">{{0.78 | percent}}</div>
-            <div class="mt10">
-              <nz-progress [nzPercent]="80" [nzSuccessPercent]="78" [nzShowInfo]="false" [nzStrokeLinecap]="'square'">
-              </nz-progress>
-            </div>
-            <nz-divider></nz-divider>
+          <div class="total">¥ {{126560 | number}}</div>
+          <div class="mt10">
             <span>周同比12%</span>
             <i nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
             <span>日同比11%</span>
             <i nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
           </div>
-        </nz-skeleton>
+          <nz-divider></nz-divider>
+          <span>日销售额</span>
+          <span class="ml10">￥{{12423 | number}}</span>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
+      <nz-card>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <div class="meta flex">
+            <span class="flex-1">访问量</span>
+            <span class="action" nz-tooltip nzTooltipTitle="指标说明">
+              <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+            </span>
+          </div>
+          <div class="total">{{8846 | number}}</div>
+          <div id="access"></div>
+          <nz-divider></nz-divider>
+          <span>日访问量</span>
+          <span class="ml10">{{1234 | number}}</span>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
+      <nz-card>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <div class="meta flex">
+            <span class="flex-1">支付笔数</span>
+            <span class="action" nz-tooltip nzTooltipTitle="指标说明">
+              <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+            </span>
+          </div>
+          <div class="total">{{6560 | number}}</div>
+          <div id="pay"></div>
+          <nz-divider></nz-divider>
+          <span>转化率</span>
+          <span class="ml10">{{0.6 | percent}}</span>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="6">
+      <nz-card>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <div class="meta flex">
+            <span class="flex-1">运营活动效果</span>
+            <span class="action" nz-tooltip nzTooltipTitle="指标说明">
+              <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+            </span>
+          </div>
+          <div class="total">{{0.78 | percent}}</div>
+          <div class="mt10">
+            <nz-progress [nzPercent]="80" [nzSuccessPercent]="78" [nzShowInfo]="false" [nzStrokeLinecap]="'square'">
+            </nz-progress>
+          </div>
+          <nz-divider></nz-divider>
+          <span>周同比12%</span>
+          <i nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
+          <span>日同比11%</span>
+          <i nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
+        </div>
       </nz-card>
     </div>
   </div>
   <nz-card class="mt20">
-    <nz-skeleton [nzLoading]="loading">
+    <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+    <ng-container *ngIf="!loading">
       <nz-tabset [(nzSelectedIndex)]="tabIndex" [nzTabBarExtraContent]="extraTemplate">
         <nz-tab nzTitle="销售额">
         </nz-tab>
@@ -107,7 +104,7 @@
       <div nz-row [nzGutter]="24">
         <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="16">
           <div class="mb10">{{tabIndex == 0 ? '销售趋势' : '访问量趋势'}}</div>
-          <div id="sales" #sales></div>
+          <div id="sales"></div>
         </div>
         <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="8">
           <div>{{tabIndex == 0 ? '门店销售额排名' : '门店访问量排名'}}</div>
@@ -121,72 +118,70 @@
           </ul>
         </div>
       </div>
-    </nz-skeleton>
+    </ng-container>
   </nz-card>
   <div nz-row [nzGutter]="24" class="mt20">
     <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
       <nz-card [nzTitle]="'线上热门搜索'" [nzExtra]="extraSearch">
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <div nz-row [nzGutter]="68" class="search">
-              <div nz-col nzXs="24" nzSm="12">
-                <div class="flex">
-                  <h4>搜索用户数</h4>
-                  <span class="action2" nz-tooltip nzTooltipTitle="指标说明">
-                    <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-                  </span>
-                </div>
-                <div class="flex">
-                  <span class="numberInfoValue">{{12321 | number}}</span>
-                  <span class="subTotal">
-                    17.1
-                    <i nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
-                  </span>
-                </div>
-                <div id="searchUser" #searchUser></div>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <div nz-row [nzGutter]="68" class="search">
+            <div nz-col nzXs="24" nzSm="12">
+              <div class="flex">
+                <h4>搜索用户数</h4>
+                <span class="action2" nz-tooltip nzTooltipTitle="指标说明">
+                  <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+                </span>
               </div>
-              <div nz-col nzXs="24" nzSm="12">
-                <div class="flex">
-                  <h4>人均搜索次数</h4>
-                  <span class="action2" nz-tooltip nzTooltipTitle="指标说明">
-                    <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-                  </span>
-                </div>
-                <div class="flex">
-                  <span class="numberInfoValue">{{2.7 | number}}</span>
-                  <span class="subTotal">
-                    26.2
-                    <i nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
-                  </span>
-                </div>
-                <div id="userSearch" #userSearch></div>
+              <div class="flex">
+                <span class="numberInfoValue">{{12321 | number}}</span>
+                <span class="subTotal">
+                  17.1
+                  <i nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
+                </span>
               </div>
+              <div id="searchUser"></div>
             </div>
-            <nz-table #basicTable [nzData]="listOfData" [nzPageSize]="5" [nzSize]="'small'" class="mt20">
-              <thead>
-                <tr>
-                  <th>排名</th>
-                  <th>搜索关键词</th>
-                  <th [nzShowSort]="true" [nzSortFn]="userSort">用户数</th>
-                  <th [nzShowSort]="true" [nzSortFn]="growthSort">周涨幅</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of basicTable.data">
-                  <td>{{ data.sort }}</td>
-                  <td><a>{{ data.key }}</a></td>
-                  <td>{{ data.user_num }}</td>
-                  <td>
-                    <span class="mr10">{{ data.growth }}%</span>
-                    <i *ngIf="data.status == 1" nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
-                    <i *ngIf="data.status == 0" nz-icon nzType="caret-down" nzTheme="outline"
-                      style="color: #52C41A"></i>
-                  </td>
-                </tr>
-              </tbody>
-            </nz-table>
+            <div nz-col nzXs="24" nzSm="12">
+              <div class="flex">
+                <h4>人均搜索次数</h4>
+                <span class="action2" nz-tooltip nzTooltipTitle="指标说明">
+                  <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+                </span>
+              </div>
+              <div class="flex">
+                <span class="numberInfoValue">{{2.7 | number}}</span>
+                <span class="subTotal">
+                  26.2
+                  <i nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
+                </span>
+              </div>
+              <div id="userSearch"></div>
+            </div>
           </div>
-        </nz-skeleton>
+          <nz-table #basicTable [nzData]="listOfData" [nzPageSize]="5" [nzSize]="'small'" class="mt20">
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>搜索关键词</th>
+                <th [nzShowSort]="true" [nzSortFn]="userSort">用户数</th>
+                <th [nzShowSort]="true" [nzSortFn]="growthSort">周涨幅</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.sort }}</td>
+                <td><a>{{ data.key }}</a></td>
+                <td>{{ data.user_num }}</td>
+                <td>
+                  <span class="mr10">{{ data.growth }}%</span>
+                  <i *ngIf="data.status == 1" nz-icon nzType="caret-up" nzTheme="outline" style="color: #F5222D"></i>
+                  <i *ngIf="data.status == 0" nz-icon nzType="caret-down" nzTheme="outline" style="color: #52C41A"></i>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
       </nz-card>
       <ng-template #extraSearch>
         <i nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomRight'" nz-icon nzType="ellipsis"
@@ -201,25 +196,24 @@
     </div>
     <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
       <nz-card [nzTitle]="'销售额类别占比'" [nzExtra]="extraType" class="h100">
-        <nz-skeleton [nzLoading]="loading">
-          <div>
-            <h4>销售额</h4>
-            <div class="saleTab">
-              <div class="saleChart">
-                <div id="saleType" #saleType></div>
-                <ul class="legend">
-                  <li *ngFor="let saleType of saleTypeData" class="mb10" (click)="changeSaleType(saleType.id)">
-                    <nz-badge [nzColor]="saleType.checked ? saleType.color : '#AAAAAA'"></nz-badge>
-                    <span>{{saleType.type}}</span>
-                    <nz-divider nzType="vertical"></nz-divider>
-                    <span>{{saleType.percent}}</span>
-                    <span class="ml10">￥{{saleType.value | number}}</span>
-                  </li>
-                </ul>
-              </div>
+        <nz-skeleton [nzLoading]="loading"></nz-skeleton>
+        <div *ngIf="!loading">
+          <h4>销售额</h4>
+          <div class="saleTab">
+            <div class="saleChart">
+              <div id="saleType"></div>
+              <ul class="legend">
+                <li *ngFor="let saleType of saleTypeData" class="mb10" (click)="changeSaleType(saleType.id)">
+                  <nz-badge [nzColor]="saleType.checked ? saleType.color : '#AAAAAA'"></nz-badge>
+                  <span>{{saleType.type}}</span>
+                  <nz-divider nzType="vertical"></nz-divider>
+                  <span>{{saleType.percent}}</span>
+                  <span class="ml10">￥{{saleType.value | number}}</span>
+                </li>
+              </ul>
             </div>
           </div>
-        </nz-skeleton>
+        </div>
       </nz-card>
       <ng-template #extraType>
         <nz-radio-group [(ngModel)]="type" class="mr10">
@@ -240,7 +234,7 @@
   </div>
   <nz-card class="mt20">
     <nz-skeleton [nzLoading]="loading"></nz-skeleton>
-    <div>
+    <div *ngIf="!loading">
       <nz-tabset>
         <nz-tab *ngFor="let tab of StoresList" [nzTitle]="storesTpl">
           <ng-template #storesTpl>
@@ -261,7 +255,7 @@
         </nz-tab>
       </nz-tabset>
       <div>
-        <div id="stores" #stores></div>
+        <div id="stores"></div>
       </div>
     </div>
   </nz-card>

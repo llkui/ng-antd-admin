@@ -4,6 +4,11 @@
   align-items: center;
   padding: 16px;
   line-height: 32px;
+  transition: padding .3s cubic-bezier(.645, .045, .355, 1);
+
+  &.sider-collapsed {
+    padding: 16px 26px;
+  }
 
   img {
     display: inline-block;
@@ -12,7 +17,6 @@
   }
 
   h1 {
-    display: inline-block;
     height: 32px;
     margin: 0 0 0 12px;
     color: #fff;
@@ -20,6 +24,11 @@
     font-size: 18px;
     line-height: 32px;
     vertical-align: middle;
+    // 一行省略
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
@@ -37,25 +46,38 @@
 
 .layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
 }
 
-nz-sider {
-  overflow: auto;
-  height: 100%;
-  position: fixed;
-  left: 0;
+:host ::ng-deep {
+  nz-sider {
+    width: 208px;
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    left: 0;
 
-  // 火狐隐藏侧边栏滚动条
-  scrollbar-width: none;
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
 
-  // 隐藏侧边栏滚动条
-  &::-webkit-scrollbar {
-    display: none;
+      .left-menu {
+        flex: 1;
+        overflow: auto;
+
+        // 火狐隐藏侧边栏滚动条
+        scrollbar-width: none;
+
+        // 隐藏侧边栏滚动条
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
   }
-}
-
-.right-layout {
-  margin-left: 200px;
 }
 
 nz-header {
@@ -71,6 +93,7 @@ nz-header {
   height: 48px;
   box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   display: flex;
+  z-index: 19;
 }
 
 .header-right {

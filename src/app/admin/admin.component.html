@@ -1,10 +1,15 @@
 <nz-layout class="layout">
-  <nz-sider *ngIf="drawerInfo.content.menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'">
-    <div class="logo" *ngIf="drawerInfo.content.menuHeader">
+  <div
+    [style]="(isCollapsed ? 'width: 80px; flex: 0 0 80px; max-width: 80px; min-width: 80px;' : 'width: 208px; flex: 0 0 208px; max-width: 208px; min-width: 208px;') + 'overflow: hidden; transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1) 0s, min-width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s, max-width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;'">
+  </div>
+  <nz-sider *ngIf="drawerInfo.content.menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'"
+    [style]="isCollapsed ? 'width: 80px; flex: 0 0 80px; max-width: 80px; min-width: 80px;' : 'width: 208px; flex: 0 0 208px; max-width: 208px; min-width: 208px;'">
+    <div class="logo" [ngClass]="{'sider-collapsed': isCollapsed}" *ngIf="drawerInfo.content.menuHeader">
       <img src="./assets/images/logo.svg" alt="">
-      <h1>ng antd admin</h1>
+      <h1 *ngIf="!isCollapsed">Ng Antd Admin</h1>
     </div>
-    <ul nz-menu [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'" nzMode="inline">
+    <ul nz-menu class="left-menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'" nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let menu of menuList">
         <li *ngIf="!menu.children" nz-menu-item nzMatchRouter>
           <a [routerLink]="menu.link">
@@ -37,6 +42,11 @@
           </ul>
         </li>
       </ng-container>
+    </ul>
+    <ul nz-menu [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'" nzMode="inline" [nzSelectable]="false">
+      <li nz-menu-item (click)="changeCollapsed()">
+        <i nz-icon [nzType]="!isCollapsed ? 'menu-fold' : 'menu-unfold'" nzTheme="outline"></i>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout [class.right-layout]="drawerInfo.content.menu">
