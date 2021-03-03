@@ -1,6 +1,11 @@
+:host ::ng-deep {
+  .ant-card-body {
+    padding: 0;
+  }
+}
+
 .main {
   display: flex;
-  background-color: #ffffff;
   padding-top: 16px;
   padding-bottom: 16px;
 

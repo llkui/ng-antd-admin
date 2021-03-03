@@ -84,7 +84,7 @@
 }
 
 .mt20 {
-  margin-top: 20px;
+  margin-top: 20px !important;
 }
 
 .ml5 {
@@ -169,6 +169,10 @@
 
 .site-page-header {
   background-color: #ffffff;
+}
+
+.bell-container .ant-tabs-nav-list {
+  margin: auto;
 }
 
 // drawer-handle

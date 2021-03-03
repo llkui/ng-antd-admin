@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PlatformLocation } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, Inject, AfterViewInit } from '@angular/core';
+import { DOCUMENT, PlatformLocation } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -18,7 +19,7 @@ const number11IconLiteral =
     styleUrls: ['./admin.component.scss']
 })
 
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, AfterViewInit {
     isCollapsed = false;
     menuList = [];
     showSearch = false;
@@ -53,19 +54,36 @@ export class AdminComponent implements OnInit {
         }
     };
     siteStyle = 'menuDark';
+    doc: Document;
+    contentDom: Element = null;
 
     constructor(
         private platformLocation: PlatformLocation,
         private router: Router,
         private message: NzMessageService,
         private iconService: NzIconService,
-        private commonS: CommonService
+        private commonS: CommonService,
+        @Inject(DOCUMENT) doc: any,
     ) {
         this.iconService.addIconLiteral('number:10', number10IconLiteral);
         this.iconService.addIconLiteral('number:11', number11IconLiteral);
+        this.doc = doc;
+    }
+
+    ngAfterViewInit() {
+        this.contentDom = this.doc.querySelector('html');
     }
 
     ngOnInit() {
+        this.router.events
+            .pipe(filter((event) => event instanceof NavigationEnd))
+            .subscribe(() => {
+                this.contentDom.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
         const siteStyle = localStorage.getItem('site-style');
         if (siteStyle) {
             this.siteStyle = siteStyle;

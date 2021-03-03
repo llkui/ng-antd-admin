@@ -1,296 +1,298 @@
 <div class="content-section">
-  <div class="main">
-    <div class="leftMenu">
-      <ul nz-menu nzMode="inline">
-        <li nz-menu-item nzSelected (click)="changeMenu(0)">基础设置</li>
-        <li nz-menu-item (click)="changeMenu(1)">安全设置</li>
-        <li nz-menu-item (click)="changeMenu(2)">账号绑定</li>
-        <li nz-menu-item (click)="changeMenu(3)">新消息通知</li>
-      </ul>
-    </div>
-    <div class="right">
-      <ng-container [ngSwitch]="selectedIndex">
-        <section *ngSwitchCase="0">
-          <div class="title">基础设置</div>
-          <div class="baseView">
-            <div class="view-left">
-              <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
-                <nz-form-item>
-                  <nz-form-label nzFor="email">邮箱</nz-form-label>
-                  <nz-form-control [nzErrorTip]="'请输入您的邮箱!'">
-                    <input nz-input formControlName="email" id="email">
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label nzFor="nickname">昵称</nz-form-label>
-                  <nz-form-control [nzErrorTip]="'请输入您的昵称!'">
-                    <input nz-input formControlName="nickname" id="nickname">
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label nzFor="desc">个人简介</nz-form-label>
-                  <nz-form-control [nzErrorTip]="'请输入个人简介!'">
-                    <textarea nz-input rows="4" formControlName="desc" id="desc" placeholder="个人简介"></textarea>
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label nzFor="country">国家/地区</nz-form-label>
-                  <nz-form-control [nzErrorTip]="'请选择国家/地区!'">
-                    <nz-select formControlName="country" id="country">
-                      <nz-option nzValue="China" nzLabel="中国"></nz-option>
-                    </nz-select>
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item style="margin-bottom: 0;">
-                  <nz-form-label>所在省市</nz-form-label>
-                  <nz-form-control>
-                    <nz-input-group>
-                      <div nz-row [nzGutter]="8">
-                        <div nz-col nzSpan="10">
-                          <nz-form-item>
-                            <nz-form-control [nzErrorTip]="'请选择您所在省!'">
-                              <nz-select formControlName="province" (ngModelChange)="provinceChange($event)"
-                                class="w100">
-                                <nz-option *ngFor="let p of provinceData" [nzValue]="p.id" [nzLabel]="p.name">
-                                </nz-option>
-                              </nz-select>
-                            </nz-form-control>
-                          </nz-form-item>
+  <nz-card>
+    <div class="main">
+      <div class="leftMenu">
+        <ul nz-menu nzMode="inline">
+          <li nz-menu-item nzSelected (click)="changeMenu(0)">基础设置</li>
+          <li nz-menu-item (click)="changeMenu(1)">安全设置</li>
+          <li nz-menu-item (click)="changeMenu(2)">账号绑定</li>
+          <li nz-menu-item (click)="changeMenu(3)">新消息通知</li>
+        </ul>
+      </div>
+      <div class="right">
+        <ng-container [ngSwitch]="selectedIndex">
+          <section *ngSwitchCase="0">
+            <div class="title">基础设置</div>
+            <div class="baseView">
+              <div class="view-left">
+                <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+                  <nz-form-item>
+                    <nz-form-label nzFor="email">邮箱</nz-form-label>
+                    <nz-form-control [nzErrorTip]="'请输入您的邮箱!'">
+                      <input nz-input formControlName="email" id="email">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzFor="nickname">昵称</nz-form-label>
+                    <nz-form-control [nzErrorTip]="'请输入您的昵称!'">
+                      <input nz-input formControlName="nickname" id="nickname">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzFor="desc">个人简介</nz-form-label>
+                    <nz-form-control [nzErrorTip]="'请输入个人简介!'">
+                      <textarea nz-input rows="4" formControlName="desc" id="desc" placeholder="个人简介"></textarea>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzFor="country">国家/地区</nz-form-label>
+                    <nz-form-control [nzErrorTip]="'请选择国家/地区!'">
+                      <nz-select formControlName="country" id="country">
+                        <nz-option nzValue="China" nzLabel="中国"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item style="margin-bottom: 0;">
+                    <nz-form-label>所在省市</nz-form-label>
+                    <nz-form-control>
+                      <nz-input-group>
+                        <div nz-row [nzGutter]="8">
+                          <div nz-col nzSpan="10">
+                            <nz-form-item>
+                              <nz-form-control [nzErrorTip]="'请选择您所在省!'">
+                                <nz-select formControlName="province" (ngModelChange)="provinceChange($event)"
+                                  class="w100">
+                                  <nz-option *ngFor="let p of provinceData" [nzValue]="p.id" [nzLabel]="p.name">
+                                  </nz-option>
+                                </nz-select>
+                              </nz-form-control>
+                            </nz-form-item>
+                          </div>
+                          <div nz-col nzSpan="14">
+                            <nz-form-item>
+                              <nz-form-control [nzErrorTip]="'请选择您所在市!'">
+                                <nz-select formControlName="city" class="w100">
+                                  <nz-option *ngFor="let c of cityList" [nzValue]="c.id" [nzLabel]="c.name"></nz-option>
+                                </nz-select>
+                              </nz-form-control>
+                            </nz-form-item>
+                          </div>
                         </div>
-                        <div nz-col nzSpan="14">
-                          <nz-form-item>
-                            <nz-form-control [nzErrorTip]="'请选择您所在市!'">
-                              <nz-select formControlName="city" class="w100">
-                                <nz-option *ngFor="let c of cityList" [nzValue]="c.id" [nzLabel]="c.name"></nz-option>
-                              </nz-select>
-                            </nz-form-control>
-                          </nz-form-item>
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzFor="address">街道地址</nz-form-label>
+                    <nz-form-control [nzErrorTip]="'请输入您的街道地址!'">
+                      <input nz-input formControlName="address" id="address">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item style="margin-bottom: 0;">
+                    <nz-form-label>联系电话</nz-form-label>
+                    <nz-form-control>
+                      <nz-input-group>
+                        <div nz-row [nzGutter]="8">
+                          <div nz-col nzSpan="8">
+                            <nz-form-item>
+                              <nz-form-control [nzErrorTip]="'请输入您的区号!'">
+                                <input nz-input formControlName="areacode" id="areacode">
+                              </nz-form-control>
+                            </nz-form-item>
+                          </div>
+                          <div nz-col nzSpan="16">
+                            <nz-form-item>
+                              <nz-form-control [nzErrorTip]="'请输入您的联系电话!'">
+                                <input nz-input formControlName="phone" id="phone">
+                              </nz-form-control>
+                            </nz-form-item>
+                          </div>
                         </div>
-                      </div>
-                    </nz-input-group>
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label nzFor="address">街道地址</nz-form-label>
-                  <nz-form-control [nzErrorTip]="'请输入您的街道地址!'">
-                    <input nz-input formControlName="address" id="address">
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item style="margin-bottom: 0;">
-                  <nz-form-label>联系电话</nz-form-label>
-                  <nz-form-control>
-                    <nz-input-group>
-                      <div nz-row [nzGutter]="8">
-                        <div nz-col nzSpan="8">
-                          <nz-form-item>
-                            <nz-form-control [nzErrorTip]="'请输入您的区号!'">
-                              <input nz-input formControlName="areacode" id="areacode">
-                            </nz-form-control>
-                          </nz-form-item>
-                        </div>
-                        <div nz-col nzSpan="16">
-                          <nz-form-item>
-                            <nz-form-control [nzErrorTip]="'请输入您的联系电话!'">
-                              <input nz-input formControlName="phone" id="phone">
-                            </nz-form-control>
-                          </nz-form-item>
-                        </div>
-                      </div>
-                    </nz-input-group>
-                  </nz-form-control>
-                </nz-form-item>
-              </form>
-              <div>
-                <button (click)="save()" nz-button [nzType]="'primary'">更新基本信息</button>
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+                <div>
+                  <button (click)="save()" nz-button [nzType]="'primary'">更新基本信息</button>
+                </div>
+              </div>
+              <div class="view-right">
+                <div class="avatar-title">头像</div>
+                <nz-avatar nzIcon="user" [nzSize]="144"
+                  nzSrc="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"></nz-avatar>
+                <div class="avatar-upload">
+                  <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }"
+                    [nzShowUploadList]="false" (nzChange)="handleChange($event)">
+                    <button nz-button><i nz-icon nzType="upload"></i>更换头像</button>
+                  </nz-upload>
+                </div>
               </div>
             </div>
-            <div class="view-right">
-              <div class="avatar-title">头像</div>
-              <nz-avatar nzIcon="user" [nzSize]="144"
-                nzSrc="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"></nz-avatar>
-              <div class="avatar-upload">
-                <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }" [nzShowUploadList]="false"
-                  (nzChange)="handleChange($event)">
-                  <button nz-button><i nz-icon nzType="upload"></i>更换头像</button>
-                </nz-upload>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section *ngSwitchCase="1">
-          <div class="title">安全设置</div>
-          <nz-list>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>账户密码</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  当前密码强度：强
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>修改</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>密保手机</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  已绑定手机：138****8293
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>修改</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>密保问题</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  未设置密保问题，密保问题可有效保护账户安全
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>设置</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>备用邮箱</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  已绑定邮箱：ant***sign.com
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>修改</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>MFA 设备</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  未绑定 MFA 设备，绑定后，可以进行二次确认
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>绑定</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-          </nz-list>
-        </section>
-        <section *ngSwitchCase="2">
-          <div class="title">账号绑定</div>
-          <nz-list>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-avatar>
-                  <i nz-icon nzType="taobao" nzTheme="outline" style="color: #FF4000"></i>
-                </nz-list-item-meta-avatar>
-                <nz-list-item-meta-title>
-                  <div>绑定淘宝</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  当前未绑定淘宝账号
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>绑定</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-avatar>
-                  <i nz-icon nzType="alipay" nzTheme="outline" style="color: #2EABFF"></i>
-                </nz-list-item-meta-avatar>
-                <nz-list-item-meta-title>
-                  <div>绑定支付宝</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  当前未绑定支付宝账号
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>绑定</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-avatar>
-                  <i nz-icon nzType="dingtalk-square" nzTheme="fill" style="color: #2EABFF"></i>
-                </nz-list-item-meta-avatar>
-                <nz-list-item-meta-title>
-                  <div>绑定钉钉</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  当前未绑定钉钉账号
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action><a>绑定</a></nz-list-item-action>
-              </ul>
-            </nz-list-item>
-          </nz-list>
-        </section>
-        <section *ngSwitchCase="3">
-          <div class="title">新消息通知</div>
-          <nz-list>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>账户密码</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  其他用户的消息将以站内信的形式通知
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action>
-                  <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
-                </nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>系统消息</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  系统消息将以站内信的形式通知
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action>
-                  <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
-                </nz-list-item-action>
-              </ul>
-            </nz-list-item>
-            <nz-list-item>
-              <nz-list-item-meta>
-                <nz-list-item-meta-title>
-                  <div>待办任务</div>
-                </nz-list-item-meta-title>
-                <nz-list-item-meta-description>
-                  待办任务将以站内信的形式通知
-                </nz-list-item-meta-description>
-              </nz-list-item-meta>
-              <ul nz-list-item-actions>
-                <nz-list-item-action>
-                  <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
-                </nz-list-item-action>
-              </ul>
-            </nz-list-item>
-          </nz-list>
-        </section>
-      </ng-container>
+          </section>
+          <section *ngSwitchCase="1">
+            <div class="title">安全设置</div>
+            <nz-list>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>账户密码</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    当前密码强度：强
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>修改</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>密保手机</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    已绑定手机：138****8293
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>修改</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>密保问题</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    未设置密保问题，密保问题可有效保护账户安全
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>设置</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>备用邮箱</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    已绑定邮箱：ant***sign.com
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>修改</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>MFA 设备</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    未绑定 MFA 设备，绑定后，可以进行二次确认
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>绑定</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+            </nz-list>
+          </section>
+          <section *ngSwitchCase="2">
+            <div class="title">账号绑定</div>
+            <nz-list>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-avatar>
+                    <i nz-icon nzType="taobao" nzTheme="outline" style="color: #FF4000"></i>
+                  </nz-list-item-meta-avatar>
+                  <nz-list-item-meta-title>
+                    <div>绑定淘宝</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    当前未绑定淘宝账号
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>绑定</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-avatar>
+                    <i nz-icon nzType="alipay" nzTheme="outline" style="color: #2EABFF"></i>
+                  </nz-list-item-meta-avatar>
+                  <nz-list-item-meta-title>
+                    <div>绑定支付宝</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    当前未绑定支付宝账号
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>绑定</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-avatar>
+                    <i nz-icon nzType="dingtalk-square" nzTheme="fill" style="color: #2EABFF"></i>
+                  </nz-list-item-meta-avatar>
+                  <nz-list-item-meta-title>
+                    <div>绑定钉钉</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    当前未绑定钉钉账号
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action><a>绑定</a></nz-list-item-action>
+                </ul>
+              </nz-list-item>
+            </nz-list>
+          </section>
+          <section *ngSwitchCase="3">
+            <div class="title">新消息通知</div>
+            <nz-list>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>账户密码</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    其他用户的消息将以站内信的形式通知
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action>
+                    <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
+                  </nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>系统消息</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    系统消息将以站内信的形式通知
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action>
+                    <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
+                  </nz-list-item-action>
+                </ul>
+              </nz-list-item>
+              <nz-list-item>
+                <nz-list-item-meta>
+                  <nz-list-item-meta-title>
+                    <div>待办任务</div>
+                  </nz-list-item-meta-title>
+                  <nz-list-item-meta-description>
+                    待办任务将以站内信的形式通知
+                  </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                  <nz-list-item-action>
+                    <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
+                  </nz-list-item-action>
+                </ul>
+              </nz-list-item>
+            </nz-list>
+          </section>
+        </ng-container>
+      </div>
     </div>
-  </div>
+  </nz-card>
 </div>
