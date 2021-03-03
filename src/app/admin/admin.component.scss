@@ -54,10 +54,14 @@
 :host ::ng-deep {
   nz-sider {
     width: 208px;
-    overflow: hidden;
-    height: 100%;
-    position: fixed;
-    left: 0;
+    position: relative;
+
+    &.fixed {
+      overflow: hidden;
+      height: 100%;
+      position: fixed;
+      left: 0;
+    }
 
     .ant-layout-sider-children {
       display: flex;
@@ -83,9 +87,19 @@
 nz-header {
   background: #fff;
   padding: 0 16px;
+  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
 
   &.dark {
     background: #000;
+  }
+
+  &.fixed {
+    position: fixed;
+    width: calc(100% - 208px);
+
+    &.collapsed {
+      width: calc(100% - 80px);
+    }
   }
 }
 

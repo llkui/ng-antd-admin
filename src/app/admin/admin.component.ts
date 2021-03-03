@@ -34,6 +34,10 @@ export class AdminComponent implements OnInit {
         task: 4,
     };
     visible = false;
+    navigationInfo = {
+        header: true,
+        menu: true
+    };
     contentList = [
         { type: 'header', name: '顶栏' },
         { type: 'footer', name: '页脚' },

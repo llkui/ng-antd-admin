@@ -1,8 +1,9 @@
 <nz-layout class="layout">
-  <div
+  <div *ngIf="drawerInfo.content.menu && navigationInfo.menu"
     [style]="(isCollapsed ? 'width: 80px; flex: 0 0 80px; max-width: 80px; min-width: 80px;' : 'width: 208px; flex: 0 0 208px; max-width: 208px; min-width: 208px;') + 'overflow: hidden; transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1) 0s, min-width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s, max-width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;'">
   </div>
   <nz-sider *ngIf="drawerInfo.content.menu" [nzTheme]="siteStyle == 'menu' ? 'light' : 'dark'"
+    [ngClass]="{'fixed': navigationInfo.menu}"
     [style]="isCollapsed ? 'width: 80px; flex: 0 0 80px; max-width: 80px; min-width: 80px;' : 'width: 208px; flex: 0 0 208px; max-width: 208px; min-width: 208px;'">
     <div class="logo" [ngClass]="{'sider-collapsed': isCollapsed}" *ngIf="drawerInfo.content.menuHeader">
       <img src="./assets/images/logo.svg" alt="">
@@ -50,7 +51,10 @@
     </ul>
   </nz-sider>
   <nz-layout [class.right-layout]="drawerInfo.content.menu">
-    <nz-header *ngIf="drawerInfo.content.header" [class.dark]="siteStyle == 'dark'">
+    <header *ngIf="drawerInfo.content.header && navigationInfo.header" class="ant-layout-header"
+      style="height: 48px; line-height: 48px; background: transparent;"></header>
+    <nz-header *ngIf="drawerInfo.content.header"
+      [ngClass]="{'dark': siteStyle == 'dark', 'fixed': navigationInfo.header, 'collapsed': isCollapsed}">
       <div style="flex: 1 1 0%;"></div>
       <div class="header-right">
         <div class="header-action header-search">
@@ -265,6 +269,30 @@
             <i *ngIf="siteStyle == 'dark'" nz-icon nzType="check" nzTheme="outline"></i>
           </div>
         </div>
+      </div>
+      <nz-divider></nz-divider>
+      <div style="margin-bottom: 24px;">
+        <h3>导航模式</h3>
+        <ul nz-list [nzSplit]="false">
+          <li nz-list-item nzNoFlex>
+            <ul nz-list-item-actions>
+              <nz-list-item-action>
+                <nz-switch [(ngModel)]="navigationInfo.header" nzSize="small" (ngModelChange)="changeContent('header')">
+                </nz-switch>
+              </nz-list-item-action>
+            </ul>
+            固定 Header
+          </li>
+          <li nz-list-item nzNoFlex>
+            <ul nz-list-item-actions>
+              <nz-list-item-action>
+                <nz-switch [(ngModel)]="navigationInfo.menu" nzSize="small" (ngModelChange)="changeContent('menu')">
+                </nz-switch>
+              </nz-list-item-action>
+            </ul>
+            固定侧边菜单
+          </li>
+        </ul>
       </div>
       <nz-divider></nz-divider>
       <div style="margin-bottom: 24px;">
