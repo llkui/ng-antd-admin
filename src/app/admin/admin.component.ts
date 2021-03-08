@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT, PlatformLocation } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -77,11 +77,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.router.events
             .pipe(filter((event) => event instanceof NavigationEnd))
-            .subscribe(() => {
-                this.contentDom.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+            .subscribe((event) => {
+                this.contentDom.scrollTop = 0;
             });
 
         const siteStyle = localStorage.getItem('site-style');
