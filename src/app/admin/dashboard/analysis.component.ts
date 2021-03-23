@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
 import { Chart, registerShape } from '@antv/g2';
 import { insertCss } from 'insert-css';
@@ -12,7 +12,7 @@ import { CommonService } from './../../service/common.service';
     styleUrls: ['./analysis.component.scss']
 })
 
-export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
+export class AnalysisDashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     loading = true;
     tabIndex = 0;
     date = [new Date(), new Date()];
@@ -32,6 +32,7 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
     saleTypeChart = null;
     StoresList = [];
     accessChart = null;
+    chatTimeout = null;
 
     constructor(
         private commonS: CommonService
@@ -77,7 +78,7 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         // 使用autoFit自适应时，首次渲染会超出范围，故主动触发resize函数
-        setTimeout(() => {
+        this.chatTimeout = setTimeout(() => {
             this.loading = false;
 
             setTimeout(() => {
@@ -92,6 +93,12 @@ export class AnalysisDashboardComponent implements OnInit, AfterViewInit {
                 this.eventResize();
             }, 0);
         }, 600);
+    }
+
+    ngOnDestroy() {
+        if (this.chatTimeout) {
+            clearTimeout(this.chatTimeout);
+        }
     }
 
     eventResize() {

@@ -25,6 +25,8 @@ import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzListModule } from 'ng-zorro-antd/list';
 
+import { NaaModule } from './../../componens/naa.module';
+
 import { FormRoutingModule } from './form-routing.module';
 
 import { BasicFormComponent } from './basic-form.component';
@@ -68,6 +70,7 @@ import { AdvancedFormComponent } from './advanced-form.component';
         NzAffixModule,
         NzPopoverModule,
         NzListModule,
+        NaaModule,
         FormRoutingModule
     ]
 })

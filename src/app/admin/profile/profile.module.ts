@@ -19,6 +19,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
+import { NaaModule } from './../../componens/naa.module';
+
 import { ProfileRoutingModule } from './profile-routing.module';
 
 import { BasicProfileComponent } from './basic.component';
@@ -52,6 +54,7 @@ import { AdvancedProfileComponent } from './advanced.component';
         NzPopoverModule,
         NzToolTipModule,
         NzEmptyModule,
+        NaaModule,
         ProfileRoutingModule
     ]
 })

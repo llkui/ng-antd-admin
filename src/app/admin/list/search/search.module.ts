@@ -18,6 +18,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
+import { NaaModule } from './../../../componens/naa.module';
+
 import { SearchService } from './search.service';
 
 import { SearchRoutingModule } from './search-routing.module';
@@ -58,6 +60,7 @@ import { SearchApplicationsComponent } from './applications.component';
         NzToolTipModule,
         NzListModule,
         NzDropDownModule,
+        NaaModule,
         SearchRoutingModule
     ],
     providers: [
