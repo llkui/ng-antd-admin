@@ -9,17 +9,17 @@ const routes: Routes = [
     {
         path: 'login',
         component: UserLoginComponent,
-        data: { title: 'login' }
+        data: { title: '登录' }
     },
     {
         path: 'register',
         component: UserRegisterComponent,
-        data: { title: 'register' }
+        data: { title: '注册' }
     },
     {
         path: 'register-result',
         component: UserRegisterResultComponent,
-        data: { title: 'register-result' }
+        data: { title: '注册结果' }
     }
 ];
 

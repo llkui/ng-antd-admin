@@ -208,6 +208,7 @@
       height: 100%;
       background-color: #fff;
       content: "";
+      z-index: 1;
     }
 
     &:after {
@@ -231,8 +232,13 @@
     }
   }
 
+  .checkbox-item-menu-realDark {
+    background-color: #263849;
+  }
 
-  .checkbox-item-menu-dark:before {
+  .checkbox-item-menu-dark:before,
+  .checkbox-item-menu-realDark:before,
+  .checkbox-item-menu-realDark:after {
     background-color: #001529;
   }
 }

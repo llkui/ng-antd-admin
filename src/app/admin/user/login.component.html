@@ -23,8 +23,7 @@
       <div class="desc">Ng Zorro Antd 实现的后台管理系统</div>
     </div>
     <div class="main">
-      <nz-tabset [nzAnimated]="false" [(nzSelectedIndex)]="selectedIndex"
-        (nzSelectedIndexChange)="selectedChange($event)">
+      <nz-tabset [(nzSelectedIndex)]="selectedIndex" (nzSelectedIndexChange)="selectedChange($event)">
         <nz-tab nzTitle="账户密码登录">
           <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
             <nz-alert *ngIf="loginError" nzType="error" nzMessage="账户或密码错误（admin/ng.antd.admin）" nzShowIcon

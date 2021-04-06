@@ -67,6 +67,10 @@
     }
   }
 
+  ::ng-deep .ant-tabs-nav-list {
+    margin: auto;
+  }
+
   .result-main {
     width: 800px;
     min-height: 400px;

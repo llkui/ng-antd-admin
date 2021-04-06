@@ -8,15 +8,18 @@ import { ErrorComponent } from './500.component';
 const routes: Routes = [
     {
         path: '403',
-        component: NoAccessComponent
+        component: NoAccessComponent,
+        data: { title: '403' }
     },
     {
         path: '404',
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        data: { title: '404' }
     },
     {
         path: '500',
-        component: ErrorComponent
+        component: ErrorComponent,
+        data: { title: '500' }
     }
 ];
 

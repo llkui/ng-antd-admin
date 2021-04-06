@@ -265,7 +265,8 @@
             (click)="changeStyle('menuDark')">
             <i *ngIf="siteStyle == 'menuDark'" nz-icon nzType="check" nzTheme="outline"></i>
           </div>
-          <div nz-tooltip nzTooltipTitle="暗黑风格" class="checkbox-item" (click)="changeStyle('dark')">
+          <div nz-tooltip nzTooltipTitle="暗黑风格" class="checkbox-item checkbox-item-menu-realDark"
+            (click)="changeStyle('dark')">
             <i *ngIf="siteStyle == 'dark'" nz-icon nzType="check" nzTheme="outline"></i>
           </div>
         </div>

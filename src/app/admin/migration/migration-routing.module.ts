@@ -7,11 +7,13 @@ import { MigrationV11Component } from './migration-v11.component';
 const routes: Routes = [
     {
         path: 'v10',
-        component: MigrationV10Component
+        component: MigrationV10Component,
+        data: { title: 'v10 升级指南' }
     },
     {
         path: 'v11',
-        component: MigrationV11Component
+        component: MigrationV11Component,
+        data: { title: 'v11 升级指南' }
     },
 ];
 
