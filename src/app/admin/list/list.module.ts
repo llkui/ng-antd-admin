@@ -35,7 +35,7 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
-import { NaaModule } from './../../componens/naa.module';
+import { WatermarkModule } from '../../componens/watermark/watermark.module';
 
 import { ListRoutingModule } from './list-routing.module';
 
@@ -90,7 +90,7 @@ import { CardListComponent } from './card-list.component';
         NzResultModule,
         NzAvatarModule,
         NzSpinModule,
-        NaaModule,
+        WatermarkModule,
         ListRoutingModule
     ]
 })

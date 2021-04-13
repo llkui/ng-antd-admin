@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
-import { CommonService } from './../service/common.service';
+import { CommonService } from '../../service/common.service';
 
 @Component({
     selector: 'app-watermark',

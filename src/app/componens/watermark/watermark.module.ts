@@ -11,6 +11,6 @@ import { WatermarkComponent } from './watermark.component';
     ]
 })
 
-export class NaaModule {
+export class WatermarkModule {
 
 }

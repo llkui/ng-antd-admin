@@ -22,7 +22,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzListModule } from 'ng-zorro-antd/list';
 
-import { NaaModule } from './../../componens/naa.module';
+import { WatermarkModule } from '../../componens/watermark/watermark.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -63,7 +63,7 @@ import { WorkplaceDashboardComponent } from './workplace.component';
         NzStatisticModule,
         NzAvatarModule,
         NzListModule,
-        NaaModule,
+        WatermarkModule,
         DashboardRoutingModule
     ]
 })
