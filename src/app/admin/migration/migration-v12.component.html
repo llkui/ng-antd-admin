@@ -1,0 +1,113 @@
+<div class="content-section">
+  <nz-card>
+    <article nz-typography>
+      <h1 nz-typography>v12 升级指南</h1>
+      <p nz-typography>
+        本文档仅作为 ng-antd-admin 升级 <code>angular</code> 12 示例。
+      </p>
+      <h2 nz-typography>开始之前</h2>
+      <p nz-typography>
+        1. 首先确保你 <code>Node.js</code> >= <code>10.13</code>
+      </p>
+      <p nz-typography>
+        2. 创建新的分支，或者使用其他方式备份当前项目
+      </p>
+      <p nz-typography>
+        3. 删除项目下 package-lock.json 文件
+      </p>
+      <h2 nz-typography>升级步骤</h2>
+      <p nz-typography>
+        1. 升级相关依赖
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            前往 <a target="_blank" href="https://update.angular.io/">https://update.angular.io/</a> 将项目升级到 Angular 12
+          </li>
+          <li>
+            如果你有单独使用 <code>@angular/cdk</code> 请执行 <code>ng update @angular/cdk</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        2. 升级 NG-ZORRO
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>ng update ng-zorro-antd</code>
+          </li>
+          <li>
+            如果控制台出现警告消息请按提示修改对应代码
+          </li>
+        </ul>
+      </div>
+      <h2 nz-typography>本项目升级步骤</h2>
+      <p nz-typography>
+        1. 将项目升级到 <code>Angular</code> 12
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>ng update @angular/cli@12 @angular/core@12</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        2. 将 <code>@angular/cdk</code> 升级到 12
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>npm i --save @angular/cdk@12.x</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        3. 将 <code>ng-zorro-antd</code> 升级到 11
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            运行 <code>npm i --save ng-zorro-antd@12.x</code>
+          </li>
+        </ul>
+      </div>
+      <h2 nz-typography>升级过程中遇到的bug</h2>
+      <p nz-typography>
+        1. The "@angular-devkit/schematics" package cannot be resolved from the workspace root directory. This may be
+        due to an unsupported node modules structure.
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            因为 <code>@angular-devkit/schematics</code> 从 0.x 更新到了 12.x
+          </li>
+          <li>
+            运行 <code>ng install --save @angular-devkit/schematics@12.x</code>
+          </li>
+        </ul>
+      </div>
+      <p nz-typography>
+        2. ./src/theme.less - Error: Module build failed (from
+        ./node_modules/mini-css-extract-plugin/dist/loader.js):<br />
+        ModuleBuildError: Module build failed (from ./node_modules/less-loader/dist/cjs.js):<br />
+
+
+        // ================================================================
+        .table-size(~'middle', @table-padding-vertical-md, @table-padding-horizontal-md, @table-font-size-md);
+      </p>
+      <div nz-typography>
+        <ul>
+          <li>
+            <code>ng-zorro-antd</code> 更新到了 12.x，但是theme.less中的变量却没有更新，把变量信息更新到12.x的版本就可以了
+          </li>
+          <li>
+            <a href="https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less"
+              target="_blank">theme.less</a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </nz-card>
+</div>
