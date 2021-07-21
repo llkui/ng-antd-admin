@@ -25,7 +25,8 @@ $ ng build --prod
 
 ## 版本介绍
 
-- 主版本支持 `Angular ^11.0.0` `ng-zorro-antd ^11.2.0`
+- 主版本支持 `Angular ^12.0.0` `ng-zorro-antd ^12.0.1`
+- `Angular ^11.0.0` 请移步 [tree 11.0.0](https://github.com/llkui/ng-antd-admin/tree/11.0.0)
 - `Angular ^10.0.0` 请移步 [tree 10.0.0](https://github.com/llkui/ng-antd-admin/tree/10.0.0)
 - `Angular ^9.0.0` 请移步 [tree 9.0.0](https://github.com/llkui/ng-antd-admin/tree/9.0.0)
   
